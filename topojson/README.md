@@ -11,3 +11,5 @@ To reproduce:
     topojson -o counties.topojson tl_2015_us_county.shp
     ```
 
+For Oregon data, install QGIS and use the "Split Vector Layer" operation on the state FIPS code. This gives you a shapefile for each state; Oregon is FIPS code 41. Then use 'ogr2ogr' to make GeoJSON and 'topojson' to make TopoJSON.
+
