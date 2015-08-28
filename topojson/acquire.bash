@@ -18,3 +18,5 @@ ogr2ogr -f GeoJSON oregon.geojson states/tl_2015_*41.shp
 
 # make TopoJSON
 topojson -o oregon.topojson states/tl_2015_*41.shp
+
+git status
