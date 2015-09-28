@@ -1,0 +1,64 @@
+
+## Crop Compass API
+
+### GET /list
+
+Returns a list of available data sources, their units, and other assorted metadata
+
+#### Example
+
+```json
+{
+  "/data/subsidy_dollars": {
+    "name": "Subidy Dollars",
+    "description": "Subsidy Dollars Received by County / Year",
+    "unit": "dollars",
+    "field": "subsidy_dollars",
+    "source_name": "Subsidy Data Source X",
+    "source_link": "http://somewhere.com/someplace"
+  },
+  "/data/subsidy_recipients": {
+    "name": "Subsidy Recipients",
+    "description": "Recipients of subsidies by County / Year",
+    "unit": "recipients",
+    "field": "subsidy_recipients",
+    "source_name": "Subsidy Data Source X",
+    "source_link": "http://somewhere.com/someplace"
+  }
+}
+```
+
+### GET /data/{TABLE_NAME}
+
+Returns rows of data, optionally filtered by crop, year, or county
+
+#### Optional Parameters
+
+* year (individual, comma separated list, range)
+* crop (individual, comma separated list)
+* county (individual, comma separated list)
+
+#### Example
+
+**GET /data/subsidy_dollars?year=2012-2015&county=Benton,Linn**
+
+```json
+{
+  "error": null,
+  "rows": 2,
+  "data": [
+    {
+      "crop": "Wheat",
+      "year": 2012,
+      "county": "Benton",
+      "subsidy_dollars": 197216
+    },
+    {
+      "crop": "Dairy",
+      "year": 2012,
+      "county": "Benton",
+      "subsidy_dollars": 52075
+    }
+  ]
+}
+```
