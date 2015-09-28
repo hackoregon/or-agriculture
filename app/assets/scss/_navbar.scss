@@ -1,0 +1,38 @@
+.navbar-default {
+  background-color: #fff;
+  border-bottom: 3px solid #AAAAAA;
+  -webkit-box-shadow:0px 1px 1px #999;
+  -moz-box-shadow:0px 1px 1px #999;
+  box-shadow:0px 1px 1px #999;
+}
+.navbar-header {
+  h1 {
+    margin-left: 20px;
+    span {font-size: 40px;}
+    .orange {color: $orange;}
+    .green {color: $green;}
+  }
+}
+
+.navbar-right .dropdown {
+  margin-top: 18px;
+}
+
+.navbar .container {
+  padding: 0;
+  ul {
+    list-style-type: none;
+    h1 {font-size: 40px;}
+    a {color: $font-color--dark;}
+    a:hover {text-decoration: none;}
+    a:link {text-decoration: none;}
+  }
+}
+
+.dropdown {
+  h1 {
+    margin: 0;
+    color: $font-color--dark;
+  }
+  .glyphicon-menu-down {font-size: 15px;}
+}

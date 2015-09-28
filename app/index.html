@@ -2,108 +2,18 @@
 <html>
 <head>
   <title>Hack Oregon | Ag & Tech</title>
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,300,700' rel='stylesheet' type='text/css'>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
-  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script href="assets/js/ui-bootstrap-tpls-0.13.4.js"></script>
   <script type="text/javascript" src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js'></script>
   <script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js'></script>
-  <script type="text/javascript" src='js/app.module.js'></script>
+  <script type="text/javascript" src='angular/app.module.js'></script>
+  <script type="text/javascript" src='angular/app.config.js'></script>
+  <script type="text/javascript" src='angular/templates/choropleth.controller.js'></script>
 </head>
-<body>
-  <header>
-    <nav>
-      <h1>Crop Compass</h1>
-    </nav>
-  </header>
-<hr>
-  <div>
-    <h2>MAP OVERLAY: CHOROPLETH MAP</h2>
-      <select name="OVERLAY OPTIONS">
-        <option value="options">View Options</option>
-        <option value="counties">Counties</option>
-        <option value="organic-farms">Organic Farms</option>
-      </select>
-      <select name="Counties">
-        <option value="oregon" selected>Oregon (whole state)</option>
-        <option value="multnomah">Multnomah</option>
-        <option value="clackamas">Clackamas</option>
-        <option value="marion">Marion</option>
-        <option value="coos">Coos</option>
-      </select>
-      <div>
-        <img src="/images/angular.png">
-      </div>
-      <h3>Map Info</h3>
-      <p>ipsum Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-  </div>
-
-  <div>
-    <p><i>TIME SLIDER FOR MAP HERE</i></p>
-    <ul>
-      <li>Climate Hardiness Zones</li>
-      <li>Ecoregions</li>
-      <li>Land Use Classes</li>
-      <li>Exports Over Time</li>
-      <li>Simplified Geography</li>
-      <li>Land Cover</li>
-    </ul>
-  </div>
-<hr>
-  <div>
-    <h2>Top 5 Crops</h2>
-    <h3>View the top five crops in all of Oregon, or select a county to view its Top 5. Then select the 'Dollars' or 'Acres' tab.</h3>
-    <select name="Counties">
-      <option value="oregon" selected>Oregon (whole state)</option>
-      <option value="multnomah">Multnomah</option>
-      <option value="clackamas">Clackamas</option>
-      <option value="marion">Marion</option>
-      <option value="coos">Coos</option>
-    </select>
-    <h3>Dollars (TAB)</h3>
-    <h3>Acres (TAB)</h3>
-    <div>
-      <h2>D3 BAR CHART</h2>
-      <h3>Christmas Trees</h3>
-      <h3>Wheat</h3>
-      <h3>Tomatoes</h3>
-      <h3>Potatoes</h3>
-      <h3>Cherries</h3>
-    </div>
-<hr>
-  </div>
-
-  <div>
-    <h2>Crop Picker</h2>
-    <p>MODAL WINDOW HERE: PICK CROPS</p>
-    <select name="Counties">
-      <option value="oregon" selected>Oregon (whole state)</option>
-      <option value="multnomah">Multnomah</option>
-      <option value="clackamas">Clackamas</option>
-      <option value="marion">Marion</option>
-      <option value="coos">Coos</option>
-    </select>
-    <div>
-      <img src="/images/angular.png" alt="Hazelnut farms vs total farms in county">
-    </div>
-  </div>
-<hr>
-  <div>
-    <h2>Total Production</h2>
-    <h3>Total Hazelnut Production</h3>
-    <p>ipsum Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat.</p>
-    <div>
-      <img src="/images/angular.png" alt="Hazelnut farms vs total farms in county">
-    </div>
-    <p><i>TIMELINE FOR TOTAL PRODUCTION GRAPH HERE</i></p>
-  </div>
-  <hr>
-  <footer>
-    <a href="#">Team</a>
-    <a href="#">Data</a>
-    <a href="#">Hack Oregon</a>
-  </footer>
+<body ng-app="cropApp">
+  <div ui-view="navbar"></div>
+  <div ui-view="choropleth"></div>
 </body>
 </html>
