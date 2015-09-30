@@ -65,15 +65,13 @@ def metadata_lookup(table_name=None):
             return dict_one(metadata_fields, row)
         else:
             cur.execute(select_table_metadata)
-            rows = cur.fetchall()
-            metadata_dict = {}
-            for row in rows:
-                metadata = dict_one(metadata_fields,row)
-                url = (request.url_root.rstrip('/') +
-                       url_for('data_table', table_name=metadata['table_name']))
-
-                metadata_dict[url] = metadata
-            return metadata_dict
+            metadata = []
+            for row in cur:
+                row_dict = dict_one(metadata_fields, row)
+                row_dict['url'] = (request.url_root.rstrip('/') +
+                       url_for('data_table', table_name=row_dict['table_name']))
+                metadata.append(row_dict)
+            return metadata
 
 def parse_where():
     where_clause = []
