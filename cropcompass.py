@@ -10,17 +10,17 @@ metadata_fields = ('name',
                    'source_name',
                    'source_link')
 
-table_fields = ('crop','year','county')
+table_fields = ('commodity','year','region')
 
 select_table_metadata = 'SELECT {METADATA_FIELDS} FROM metadata'.format(
                                       METADATA_FIELDS=','.join(metadata_fields))
 
 select_data_template = """SELECT d.crop,
                                  d.year,
-                                 cl.county,
+                                 cl.region,
                                  d.{FIELD}
                                  FROM {TABLE_NAME} d
-                                 LEFT JOIN county_lookup cl
+                                 LEFT JOIN region_lookup cl
                                  USING (fips)
                                  {WHERE_CLAUSE}
                                  {LIMIT_CLAUSE}"""
@@ -84,8 +84,7 @@ def parse_where():
             where_clause.append((field + ' in (%s)') %
                                 (','.join(['%s'] * len(field_values))))
     if where_clause:
-        return ('WHERE ' + ' AND '.join(where_clause),
-                where_args)
+        return ('WHERE ' + ' AND '.join(where_clause), where_args)
     return ('',[])
 
 
