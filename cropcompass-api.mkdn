@@ -8,24 +8,28 @@ Returns a list of available data sources, their units, and other assorted metada
 #### Example
 
 ```json
-{
-  "/data/subsidy_dollars": {
-    "name": "Subidy Dollars",
-    "description": "Subsidy Dollars Received by County / Year",
-    "unit": "dollars",
-    "field": "subsidy_dollars",
-    "source_name": "Subsidy Data Source X",
-    "source_link": "http://somewhere.com/someplace"
-  },
-  "/data/subsidy_recipients": {
-    "name": "Subsidy Recipients",
-    "description": "Recipients of subsidies by County / Year",
-    "unit": "recipients",
-    "field": "subsidy_recipients",
-    "source_name": "Subsidy Data Source X",
-    "source_link": "http://somewhere.com/someplace"
-  }
-}
+[
+   {
+      "source_name":"Environmental Working Group Farm Subsidies",
+      "name":"Subsidy Dollars",
+      "url":"http://localhost:5000/data/subsidy_dollars",
+      "source_link":"http://farm.ewg.org/region.php?fips=41000",
+      "field":"subsidy_dollars",
+      "table_name":"subsidy_dollars",
+      "unit":"dollars",
+      "description":"Subsidy Dollars received annually by County and Crop"
+   },
+   {
+      "source_name":"Environmental Working Group Farm Subsidies",
+      "name":"Subsidy Recipients",
+      "url":"http://localhost:5000/data/subsidy_recipients",
+      "source_link":"http://farm.ewg.org/region.php?fips=41000",
+      "field":"subsidy_recipients",
+      "table_name":"subsidy_recipients",
+      "unit":"recipients",
+      "description":"Recipients of subsidies annually by County and Crop"
+   }
+]
 ```
 
 ### GET /data/{TABLE_NAME}
@@ -34,31 +38,61 @@ Returns rows of data, optionally filtered by crop, year, or county
 
 #### Optional Parameters
 
-* year (individual, comma separated list, range)
+* year (individual, comma separated list)
 * crop (individual, comma separated list)
-* county (individual, comma separated list)
+* region (individual, comma separated list)
 
 #### Example
 
-**GET /data/subsidy_dollars?year=2012-2015&county=Benton,Linn**
+**GET /data/subsidy_dollars?region=Benton,Linn&year=2003**
 
 ```json
 {
-  "error": null,
-  "rows": 2,
-  "data": [
-    {
-      "crop": "Wheat",
-      "year": 2012,
-      "county": "Benton",
-      "subsidy_dollars": 197216
-    },
-    {
-      "crop": "Dairy",
-      "year": 2012,
-      "county": "Benton",
-      "subsidy_dollars": 52075
-    }
-  ]
+   "rows":7,
+   "data":[
+      {
+         "subsidy_dollars":333238,
+         "region":"Benton",
+         "commodity":"Wheat",
+         "year":2003
+      },
+      {
+         "subsidy_dollars":95979,
+         "region":"Benton",
+         "commodity":"Dairy",
+         "year":2003
+      },
+      {
+         "subsidy_dollars":21434,
+         "region":"Benton",
+         "commodity":"Sheep Meat",
+         "year":2003
+      },
+      {
+         "subsidy_dollars":395546,
+         "region":"Linn",
+         "commodity":"Livestock",
+         "year":2003
+      },
+      {
+         "subsidy_dollars":364618,
+         "region":"Linn",
+         "commodity":"Wheat",
+         "year":2003
+      },
+      {
+         "subsidy_dollars":348468,
+         "region":"Linn",
+         "commodity":"Dairy",
+         "year":2003
+      },
+      {
+         "subsidy_dollars":224284,
+         "region":"Linn",
+         "commodity":"Sheep Meat",
+         "year":2003
+      }
+   ],
+   "error":null
 }
 ```
