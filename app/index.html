@@ -1,19 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="cropApp">
 <head>
   <title>Hack Oregon | Ag & Tech</title>
   <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,300,700' rel='stylesheet' type='text/css'>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
   <link rel="stylesheet" href="assets/css/main.css">
-  <script href="assets/js/ui-bootstrap-tpls-0.13.4.js"></script>
   <script type="text/javascript" src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js'></script>
   <script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js'></script>
   <script type="text/javascript" src='angular/app.module.js'></script>
   <script type="text/javascript" src='angular/app.config.js'></script>
   <script type="text/javascript" src='angular/templates/choropleth.controller.js'></script>
 </head>
-<body ng-app="cropApp">
+<body>
   <div ui-view="navbar"></div>
   <div ui-view="choropleth"></div>
+  <div ui-view="topFive"></div>
+  <div ui-view="totalProd"></div>
 </body>
+<div ui-view="footer"></div>
 </html>

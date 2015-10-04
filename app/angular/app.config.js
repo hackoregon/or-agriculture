@@ -9,6 +9,15 @@ cropApp.config(function($stateProvider, $urlRouterProvider) {
         },
         "choropleth": {
           templateUrl: 'angular/templates/choropleth.html'
+        },
+        "topFive": {
+          templateUrl: 'angular/templates/topFive.html'
+        },
+        "totalProd": {
+          templateUrl: 'angular/templates/totalProd.html'
+        },
+        "footer": {
+          templateUrl: 'angular/layout/footer.html'
         }
       }
     });
