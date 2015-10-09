@@ -12,12 +12,16 @@
   <script type="text/javascript" src='angular/app.config.js'></script>
   <script type="text/javascript" src='angular/templates/choropleth.controller.js'></script>
   <script type="text/javascript" src='angular/layout/navbar.controller.js'></script>
+  <!-- testing out api request -->
+  <script type="text/javascript" src='angular/templates/testController.js'></script>
+
 
 </head>
 
 <body>
   <div ui-view="navbar"></div>
-  <div ui-view="choropleth"></div>
+
+  <div ng-controller="testCtrl" ui-view="choropleth"></div>
   <div ui-view="topFive"></div>
   <div ui-view="totalProd"></div>
 </body>

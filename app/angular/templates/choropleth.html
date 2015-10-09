@@ -16,5 +16,15 @@
         <em>map controls</em>
       </p>
     </div>
+    <table class="table table-striped table-bordered">
+      <tr>
+        <th>Region</th>
+        <th>Commodity</th>
+      </tr>
+      <tr ng-repeat="item in subsidyDollars">
+        <td>{{item.data[0].region}}</td>
+        <td>{{item.data[0].commodity}}</td>
+      </tr>
+    </table>
   </div>
 </div>
