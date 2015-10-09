@@ -1,6 +1,6 @@
 var cropApp = angular.module('cropApp', ['ui.router']);
 
-  app.directive("topFive", function(){
+  cropApp.directive("topFive", function(){
     return {
       restrict: "E",
       templateUrl: "topFive.html",
