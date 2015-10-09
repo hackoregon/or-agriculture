@@ -12,7 +12,7 @@ Returns a list of available data sources, their units, and other assorted metada
    {
       "source_name":"Environmental Working Group Farm Subsidies",
       "name":"Subsidy Dollars",
-      "url":"http://localhost:5000/data/subsidy_dollars",
+      "url":"http://api.cropcompass.org/data/subsidy_dollars",
       "source_link":"http://farm.ewg.org/region.php?fips=41000",
       "field":"subsidy_dollars",
       "table_name":"subsidy_dollars",
@@ -22,7 +22,7 @@ Returns a list of available data sources, their units, and other assorted metada
    {
       "source_name":"Environmental Working Group Farm Subsidies",
       "name":"Subsidy Recipients",
-      "url":"http://localhost:5000/data/subsidy_recipients",
+      "url":"http://api.cropcompass.org/data/subsidy_recipients",
       "source_link":"http://farm.ewg.org/region.php?fips=41000",
       "field":"subsidy_recipients",
       "table_name":"subsidy_recipients",

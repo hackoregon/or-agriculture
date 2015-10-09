@@ -1,5 +1,5 @@
 import simplejson as json
-from flask import Flask, url_for, request
+from flask import Flask, url_for, request, g
 import psycopg2
 
 metadata_fields = ('name',
@@ -25,9 +25,14 @@ select_data_template = """SELECT d.crop,
                                  {WHERE_CLAUSE}
                                  {LIMIT_CLAUSE}"""
 
-conn = psycopg2.connect("dbname=alex user=alex")
+class CropFlaskServer(Flask):
+    def __init__(self, *args, **kwargs):
+        super(CropFlaskServer, self).__init__(*args, **kwargs)
+        self.dsn = "dbname=alex user=postgres port=55432 host=10.102.148.190 password=mysecretpassword"
+        #self.dsn = "dbname=alex user=alex" # Testing DSN only
+        self.conn = psycopg2.connect(self.dsn)
 
-app = Flask(__name__)
+app = CropFlaskServer(__name__)
 
 @app.route('/')
 def root():
@@ -43,7 +48,8 @@ def metadata_list_all():
 def data_table(table_name):
     table_metadata = metadata_lookup(table_name)
     row_keys = table_fields + (table_metadata['field'],)
-    with conn.cursor() as cur:
+    check_conn()
+    with app.conn.cursor() as cur:
         where_clause, where_args = parse_where()
         query = select_data_template.format(TABLE_NAME=table_name,
                                             FIELD=table_metadata['field'],
@@ -57,7 +63,8 @@ def data_table(table_name):
     return json.dumps(response)
 
 def metadata_lookup(table_name=None):
-    with conn.cursor() as cur:
+    check_conn()
+    with app.conn.cursor() as cur:
         if table_name:
             query = select_table_metadata + ' WHERE table_name = %s'
             cur.execute(query, (table_name,))
@@ -72,6 +79,14 @@ def metadata_lookup(table_name=None):
                        url_for('data_table', table_name=row_dict['table_name']))
                 metadata.append(row_dict)
             return metadata
+
+def check_conn():
+    try:
+        cur = app.conn.cursor()
+        cur.execute('SELECT 1')
+        cur.fetchall()
+    except:
+        app.conn = psycopg2.connect(app.dsn)
 
 def parse_where():
     where_clause = []
@@ -95,4 +110,4 @@ def dict_many(keys, values):
     return [dict(zip(keys, row)) for row in values]
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
