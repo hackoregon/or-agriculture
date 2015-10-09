@@ -1,0 +1,13 @@
+<section>
+	<h1>Farm Info</h1>
+	<ul>
+		<li ng-class="{active: panel.isSelected(1)}"><a href ng-click='panel.selectTab(1)'>Dollars</a></li>
+		<li ng-class="{active: panel.isSelected(2)}"><a href ng-click='panel.selectTab(2)'>Acres</a></li>
+	</ul>
+	<div class='panel'>
+		<topFiveDollars ng-show="panel.isSelected(1)"></topFiveDollars>
+	</div>
+	<div class='panel'>
+		<topFiveAcres ng-show="panel.isSelected(1)"></topFiveAcres>
+	</div>
+</section>
