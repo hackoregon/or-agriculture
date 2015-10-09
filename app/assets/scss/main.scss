@@ -1,0 +1,13 @@
+@import 'vars';
+@import 'typography';
+@import 'choropleth';
+@import 'navbar';
+@import 'footer';
+
+body {
+  font-family: 'Roboto Slab', serif;
+  color: $font-color--dark;
+  background-color: #fff;
+  padding: $half-space;
+  padding-top: 160px;
+}
