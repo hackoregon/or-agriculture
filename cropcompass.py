@@ -25,7 +25,9 @@ select_data_template = """SELECT d.crop,
                                  {WHERE_CLAUSE}
                                  {LIMIT_CLAUSE}"""
 
-conn = psycopg2.connect("dbname=alex user=alex")
+dsn = "dbname=alex user=postgres port=55432 host=10.102.148.190 password=mysecretpassword"
+#dsn = "dbname=alex user=alex" # Testing DSN only
+conn = psycopg2.connect(dsn)
 
 app = Flask(__name__)
 
@@ -43,6 +45,7 @@ def metadata_list_all():
 def data_table(table_name):
     table_metadata = metadata_lookup(table_name)
     row_keys = table_fields + (table_metadata['field'],)
+    conn = check_conn(dsn,conn)
     with conn.cursor() as cur:
         where_clause, where_args = parse_where()
         query = select_data_template.format(TABLE_NAME=table_name,
@@ -57,6 +60,7 @@ def data_table(table_name):
     return json.dumps(response)
 
 def metadata_lookup(table_name=None):
+    conn = check_conn(dsn, conn)
     with conn.cursor() as cur:
         if table_name:
             query = select_table_metadata + ' WHERE table_name = %s'
@@ -72,6 +76,11 @@ def metadata_lookup(table_name=None):
                        url_for('data_table', table_name=row_dict['table_name']))
                 metadata.append(row_dict)
             return metadata
+
+def check_conn(dsn, conn):
+    if conn.connection_closed:
+        return psycopg2.connect("dbname=alex user=alex")
+    return conn
 
 def parse_where():
     where_clause = []
