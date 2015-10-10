@@ -1,4 +1,4 @@
-cropApp.config(function($stateProvider, $urlRouterProvider) {
+cropApp.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
 
   $stateProvider
     .state('index', {
@@ -22,4 +22,8 @@ cropApp.config(function($stateProvider, $urlRouterProvider) {
       }
     });
   $urlRouterProvider.otherwise("/");
+
+  $httpProvider.defaults.useXDomain = true;
+  delete $httpProvider.defaults.headers.common['X-Requested-With']; 
+
 });
