@@ -1,5 +1,5 @@
 import simplejson as json
-from flask import Flask, url_for, request, g
+from flask import Flask, url_for, request
 import psycopg2
 
 metadata_fields = ('name',
@@ -42,7 +42,7 @@ def root():
                                 url_for('metadata_list_all')))
 @app.route('/list')
 def metadata_list_all():
-    return json.dumps(metadata_lookup())
+    return make_json_response(metadata_lookup())
 
 @app.route('/data/<table_name>')
 def data_table(table_name):
@@ -60,7 +60,7 @@ def data_table(table_name):
     response = {'error':None,
                 'rows':len(table_data),
                 'data':dict_many(row_keys,table_data)}
-    return json.dumps(response)
+    return make_json_response(response)
 
 def metadata_lookup(table_name=None):
     check_conn()
@@ -88,6 +88,13 @@ def check_conn():
     except:
         app.conn = psycopg2.connect(app.dsn)
 
+def make_json_response(data):
+    resp = app.make_response(json.dumps(data))
+    h = resp.headers
+    h['Access-Control-Allow-Origin'] = '*'
+    h['Content-Type'] = 'application/json'
+    return resp
+
 def parse_where():
     where_clause = []
     where_args = []
@@ -110,4 +117,4 @@ def dict_many(keys, values):
     return [dict(zip(keys, row)) for row in values]
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
