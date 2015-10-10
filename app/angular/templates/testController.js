@@ -8,3 +8,5 @@ cropApp
       console.log(response);
     });
   });
+
+  // http://stackoverflow.com/questions/20987604/angular-iterate-over-json
