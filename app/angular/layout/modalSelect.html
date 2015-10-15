@@ -1,0 +1,21 @@
+<section class="modal-window">
+  <div class="modal-header">
+    <h1 class="modal-title">Pick a region or county</h1>
+    <div class="search">
+      <span class="fa fa-search fa-2x"></span>
+      <input ng-model="searchRegion" type="text" name="select" value="" placeholder="Explore Oregon">
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="modal-body">
+      <h2>Selected region: <b>{{selected.county.name}}</b></h2>
+      <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+      <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+      <ul>
+        <li ng-repeat="county in counties | filter:searchRegion">
+          <a href="#" ng-click="$event.preventDefault(); selected.county = county"> {{county.name}}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
