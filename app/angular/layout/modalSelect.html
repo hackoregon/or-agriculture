@@ -12,10 +12,15 @@
       <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
       <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
       <ul>
-        <li ng-repeat="county in counties | filter:searchRegion">
-          <a href="#" ng-click="$event.preventDefault(); selected.county = county"> {{county.name}}</a>
+        <li class="region-title"> <i class="fa fa-map-marker fa-2x fa-rotate-225"></i> Test Region
+          <ul>
+            <li ng-repeat="county in counties | filter:searchRegion">
+              <a href="#" ng-click="$event.preventDefault(); selected.county = county"> {{county.name}}</a>
+            </li>
+          </ul>
         </li>
       </ul>
+
     </div>
   </div>
 </section>
