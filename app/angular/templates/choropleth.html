@@ -22,10 +22,10 @@
         <th>Commodity</th>
         <th>Acres</th>
       </tr>
-      <tr ng-repeat="item in harvestedAcres">
-        <td>{{item.data[0].region}}</td>
-        <td>{{item.data[0].commodity}}</td>
-        <td>{{item.data[0].harvested_acres}}</td>
+      <tr ng-repeat="item in harvestedAcres.data.data">
+        <td>{{item.region}}</td>
+        <td>{{item.commodity}}</td>
+        <td>{{item.harvested_acres}}</td>
       </tr>
     </table>
   </div>
