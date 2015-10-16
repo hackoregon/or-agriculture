@@ -1,0 +1,49 @@
+.modal-header {
+  margin: 0 30px;
+  border: none;
+  h1 {
+    color: #1BA428;
+  }
+  input {
+    border: 4px solid #6B7E86;
+    border-radius: 8px;
+    height: 48px;
+    width: 100%;
+    font-size: 20px;
+  }
+  .search { position: relative; }
+
+  .search input { text-indent: 30px;}
+  .search .fa-search {
+    position: absolute;
+    top: 9px;
+    left: 7px;
+  }
+}
+.modal-body {
+  border: 1px solid #D3D3D3;
+  border-radius: 8px;
+  margin: 0 30px;
+  h2 {
+    font-size: 30px;
+  }
+  ul {
+    list-style-type: none;
+    padding-top: 10px;
+    // padding-left: 0;
+  }
+  .region-title {
+    font-size: 30px;
+  }
+  li {
+    font-size: 20px;
+    a {color: #000;}
+  }
+  ul li ul {
+    padding-left: 90px;
+  }
+}
+.modal-window {
+  overflow: auto !important;
+  height: 600px; //set a height to a modal so it wont overlapped when the body tag's height is smaller than the modal
+}

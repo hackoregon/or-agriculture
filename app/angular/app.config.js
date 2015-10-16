@@ -5,7 +5,10 @@ cropApp.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
       url: "",
       views: {
         "navbar": {
-          templateUrl: 'angular/layout/navbar.html',
+          templateUrl: 'angular/layout/navbar.html'
+        },
+        "modalSelect": {
+          templateUrl: 'angular/layout/modalSelect.html'
         },
         "choropleth": {
           templateUrl: 'angular/templates/choropleth.html'
