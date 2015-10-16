@@ -20,10 +20,12 @@
       <tr>
         <th>Region</th>
         <th>Commodity</th>
+        <th>Acres</th>
       </tr>
-      <tr ng-repeat="item in subsidyDollars">
+      <tr ng-repeat="item in harvestedAcres">
         <td>{{item.data[0].region}}</td>
         <td>{{item.data[0].commodity}}</td>
+        <td>{{item.data[0].harvested_acres}}</td>
       </tr>
     </table>
   </div>

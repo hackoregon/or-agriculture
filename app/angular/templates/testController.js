@@ -2,7 +2,7 @@ cropApp
   .controller('testCtrl', function($scope, $http, $log) {
     $http({
       method: 'GET',
-      url: 'http://api.cropcompass.org/data/subsidy_dollars?region=Benton',
+      url: 'http://api.cropcompass.org/data/oain_harvest_acres?region=Benton',
       headers: {
         'Content-Type': 'text/html; charset=utf-8'
       }
@@ -10,7 +10,7 @@ cropApp
     // var test = $http.get('http://api.cropcompass.org/data/oain_harvest_acres?region=Benton', {headers:{'Accept':'application/json'}});
 
     .then(function(response) {
-      $scope.subsidyDollars = response;
+      $scope.harvestedAcres = response;
       console.log("hello");
       console.log(response);
     }, function() {
