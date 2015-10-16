@@ -1,5 +1,5 @@
 cropApp
-  .controller('testCtrl', function($scope, $http, $log) {
+  .controller('acresCtrl', function($scope, $http, $log) {
     $http({
       method: 'GET',
       url: 'http://api.cropcompass.org/data/oain_harvest_acres?region=Benton',
@@ -19,17 +19,12 @@ cropApp
 
   // http://stackoverflow.com/questions/20987604/angular-iterate-over-json
 
-cropApp
-  .filter('orderByAcres', function() {
-    return function(items, field, reverse) {
-    var filtered = [];
-    angular.forEach(items, function(item) {
-      filtered.push(item);
-    });
-    filtered.sort(function (a, b) {
-      return (a[field] > b[field] ? 1 : -1);
-    });
-    if(reverse) filtered.reverse();
-    return filtered;
-  };
-});
+
+//
+// old way of displaying results
+//
+// <tr ng-repeat="item in harvestedAcres">
+//   <td>{{item.data[0].region}}</td>
+//   <td>{{item.data[0].commodity}}</td>
+//   <td>{{item.data[0].harvested_acres}}</td>
+// </tr>

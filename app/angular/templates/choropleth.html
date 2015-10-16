@@ -22,7 +22,7 @@
         <th>Commodity</th>
         <th>Acres</th>
       </tr>
-      <tr ng-repeat="item in harvestedAcres.data.data | orderBy:'-harvested_acres'">
+      <tr ng-repeat="item in harvestedAcres.data.data | orderBy:'-harvested_acres' | limitTo: 5">
         <td>{{item.region}}</td>
         <td>{{item.commodity}}</td>
         <td>{{item.harvested_acres}}</td>
