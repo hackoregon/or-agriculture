@@ -1,0 +1,34 @@
+  /*!
+  * --------------------------------------------------------------------------
+  * Scaffolding
+  * --------------------------------------------------------------------------
+  */
+
+html {
+  overflow: hidden;
+}
+
+header,
+footer {
+  height: 10vh;
+  width: 100%;
+  position: fixed;
+  z-index: 10;
+}
+
+header {
+  top: 0;
+}
+
+footer {
+  bottom: 0;
+}
+
+main {
+  margin: 10vh auto;
+  height: 80vh;
+  overflow: scroll;
+}
+
+section {
+}

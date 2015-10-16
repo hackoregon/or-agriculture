@@ -1,0 +1,27 @@
+footer  {
+  background: $brand-tan--dark;
+  color: $brand-tan;
+  border-top: 1px solid $brand-tan--light;
+}
+footer ul {
+  display: flex;
+  align-items: center;
+  height: inherit;
+}
+footer ul li {
+  width: 5rem;
+}
+footer ul li:last-child {
+  flex-grow: 2;
+  text-align: right;
+}
+footer a {
+  color: $brand-tan;
+}
+footer a:hover,
+footer a:active,
+footer a:focus {
+  text-decoration: none;
+  border-bottom: 1px solid $brand-tan--light;
+  color: $brand-tan--light;
+}

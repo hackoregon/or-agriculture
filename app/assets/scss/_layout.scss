@@ -1,0 +1,9 @@
+body {
+  font-family: 'Roboto Slab', serif;
+  color: #424242;
+  background-color: $brand-tan;
+}
+
+main section:nth-of-type(even) {
+  background: $brand-tan--light;
+}

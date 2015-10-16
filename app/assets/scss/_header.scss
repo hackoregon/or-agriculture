@@ -1,0 +1,59 @@
+header {
+  background-color: $brand-tan--light;
+  border-bottom: 1px solid $brand-tan--dark;
+  text-align: center;
+}
+header .container {
+  display: flex;
+  align-items: center;
+  text-align: left;
+}
+header h1::before {
+  content: ' ';
+  display: inline-block;
+  height: 10vh;
+  width: 10vh;
+  vertical-align: top;
+  background: url('../images/carrot.svg');
+}
+header h1 {
+  align-self: flex-start;
+  margin: 0 auto 0 0;
+  font-size: 5vh;
+  line-height: 1.825;
+  text-align: left;
+  }
+.orange {
+  color: $brand-orange;
+  }
+.green {
+  color: $brand-green;
+  }
+header div {
+  margin: 0 0 0 auto;
+}
+header .btn {
+  font-size: 4vh;
+}
+header .btn-link {
+  color: $font-color--dark;
+}
+header .btn-link:hover,
+header .btn-link:active,
+header .btn-link:focus {
+  text-decoration: none;
+  color: #212121;
+  outline: none;
+  background: #fff;
+  border-radius: 1rem;
+}
+header i {
+  display: inline-block;
+  width: 6vh;
+  height: 6vh;
+  border: 4px solid $brand-tan--dark;
+  border-radius: 60px;
+}
+header i::before {
+  line-height: 1.25;
+}
