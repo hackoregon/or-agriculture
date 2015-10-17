@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 import datetime as dt
 
 from django.db import models
+from cropcompass import filters
 
 
 
@@ -72,15 +73,8 @@ class RawNassData(TimeStampedModel):
                 self.year,
             )
 
-    def clean_value(self):
-        num_string = self.value.replace(',', '')
-        try:
-            if '.' in num_string:
-                return float(num_string)
-            else:
-                return int(num_string)
-        except ValueError:
-                return None 
+    def normalize_value(self):
+        return filters.normalize_value_field(self.value)
 
     class Meta:
         pass

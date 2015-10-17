@@ -1,4 +1,5 @@
 from cropcompass import models
+from cropcompass import filters
 from rest_framework import serializers
 
 
@@ -26,20 +27,14 @@ class NassBasicsSerializer(NassSerializer):
             'value_raw',
         )
 
-    value = serializers.SerializerMethodField('clean_value')
+    value = serializers.SerializerMethodField('normalize_value')
     value_raw = serializers.ReadOnlyField(source='value')
 
+    def normalize_value(self, obj):
+        # this could happen in the model instead, but
+        # this is a good place for other clean up functions.
+        return filters.normalize_value_field(obj.value)
 
-    def clean_value(self, obj):
-        """ Remember 'value' is actually the name of a field. """
-        num_string = obj.value.replace(',', '')
-        try:
-            if '.' in num_string:
-                return float(num_string)
-            else:
-                return int(num_string)
-        except ValueError:
-                return None 
 
 
 class NassCommodities(serializers.ModelSerializer):

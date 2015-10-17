@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from cropcompass import models
 from cropcompass.models import RawNassData as NASS
 from cropcompass import serializers
-from cropcompass import utils
+from cropcompass import filters
 import pandas as pd
 
 
@@ -110,7 +110,7 @@ class NassSalesByYear(viewsets.ViewSet):
                 )
         
         df = pd.DataFrame.from_records(crops.values())
-        df.value = df.value.apply(utils.clean_value)
+        df.value = df.value.apply(filters.normalize_value_field)
         pt = df.pivot_table(
                 index='year', 
                 columns='commodity_desc',
