@@ -1,5 +1,7 @@
 var cropApp = angular.module('cropApp', ['ngAnimate', 'ui.bootstrap', 'ui.router']);
 
+// To reset master, just clear out everything below this line, then uncomment the code in 'modalSelect.controller.js'
+
 cropApp
 .factory('mySharedService', function($rootScope){
   var sharedService = [

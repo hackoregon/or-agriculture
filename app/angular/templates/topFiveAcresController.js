@@ -2,11 +2,7 @@ cropApp
   .controller('acresCtrl', function($scope, $http, $log) {
     $http({
       method: 'GET',
-<<<<<<< HEAD
-      url: 'http://api.cropcompass.org/data/oain_harvest_acres?region=Multnomah',
-=======
       url: 'http://api.cropcompass.org/data/oain_harvest_acres?region=',
->>>>>>> shared
       headers: {
         'Content-Type': 'text/html; charset=utf-8'
       }
