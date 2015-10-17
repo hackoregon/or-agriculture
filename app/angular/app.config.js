@@ -16,6 +16,9 @@ cropApp.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
         "topFive": {
           templateUrl: 'angular/templates/topFive.html'
         },
+        "topFiveAcres": {
+          templateUrl: 'angular/templates/topFiveAcres.html'
+        },
         "totalProd": {
           templateUrl: 'angular/templates/totalProd.html'
         },
@@ -27,6 +30,6 @@ cropApp.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
   $urlRouterProvider.otherwise("/");
 
   $httpProvider.defaults.useXDomain = true;
-  delete $httpProvider.defaults.headers.common['X-Requested-With']; 
+  delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
 });
