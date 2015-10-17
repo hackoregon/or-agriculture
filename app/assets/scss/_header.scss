@@ -7,6 +7,7 @@ header .container {
   display: flex;
   align-items: center;
   text-align: left;
+  padding: 0;
 }
 header h1::before {
   content: ' ';
@@ -35,25 +36,34 @@ header div {
 header .btn {
   font-size: 4vh;
 }
+header .btn:hover,
+header .btn:active,
+header .btn:focus {
+  outline: none;
+}
 header .btn-link {
-  color: $font-color--dark;
+  color: $brand-tan--dark;
+  font-weight: bold;
+  border: 3px solid transparent;
 }
 header .btn-link:hover,
 header .btn-link:active,
 header .btn-link:focus {
   text-decoration: none;
-  color: #212121;
-  outline: none;
+  color: $brand-tan--dark;
   background: #fff;
   border-radius: 1rem;
+  border-color: $brand-tan--dark;
+  outline: none;
 }
 header i {
   display: inline-block;
   width: 6vh;
   height: 6vh;
-  border: 4px solid $brand-tan--dark;
+  border: 3px solid $brand-tan--dark;
   border-radius: 60px;
 }
 header i::before {
   line-height: 1.25;
+  color: $brand-tan--dark;
 }

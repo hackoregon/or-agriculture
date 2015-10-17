@@ -1,3 +1,40 @@
 .choropleth {
   text-align: center;
 }
+
+.choropleth .btn-round {
+  font-size: 4vh;
+  border-radius: 5vh;
+  width: 9vh;
+  height: 9vh;
+  border: 3px solid $brand-tan--dark;
+  color: $brand-tan--dark;
+  background: $brand-tan--light;
+  padding: 0;
+}
+.choropleth .btn:hover,
+.choropleth .btn:active,
+.choropleth .btn:focus {
+  outline: none;
+}
+.choropleth i {
+  width: 6vh;
+  height: 6vh;
+}
+.choropleth i::before {
+  line-height: 1.5;
+  font-weight: bold;
+}
+[name="Zoom In"],
+[name="Zoom Out"] {
+  display: block;
+  margin: 0 auto 1rem auto;
+}
+
+#choropleth-map {
+
+}
+
+#choropleth-type-selectors {
+
+}

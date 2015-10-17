@@ -68,13 +68,24 @@ main {
   height: 80vh;
   overflow: scroll; }
 
+section {
+  height: 80vh; }
+
 body {
   font-family: 'Roboto Slab', serif;
   color: #424242;
   background-color: #E4DFCF; }
 
-main section:nth-of-type(even) {
-  background: #F8F7F3; }
+main {
+  border-top: 1px solid #F8F7F3;
+  border-bottom: 1px solid #837959; }
+
+main section {
+  padding: 1rem;
+  border-top: 1px solid #F8F7F3; }
+
+main section:first-of-type {
+  border-top: 0; }
 
 header {
   background-color: #F8F7F3;
@@ -88,7 +99,8 @@ header .container {
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
-  text-align: left; }
+  text-align: left;
+  padding: 0; }
 
 header h1::before {
   content: ' ';
@@ -119,27 +131,36 @@ header div {
 header .btn {
   font-size: 4vh; }
 
+header .btn:hover,
+header .btn:active,
+header .btn:focus {
+  outline: none; }
+
 header .btn-link {
-  color: #424242; }
+  color: #837959;
+  font-weight: bold;
+  border: 3px solid transparent; }
 
 header .btn-link:hover,
 header .btn-link:active,
 header .btn-link:focus {
   text-decoration: none;
-  color: #212121;
-  outline: none;
+  color: #837959;
   background: #fff;
-  border-radius: 1rem; }
+  border-radius: 1rem;
+  border-color: #837959;
+  outline: none; }
 
 header i {
   display: inline-block;
   width: 6vh;
   height: 6vh;
-  border: 4px solid #837959;
+  border: 3px solid #837959;
   border-radius: 60px; }
 
 header i::before {
-  line-height: 1.25; }
+  line-height: 1.25;
+  color: #837959; }
 
 p {
   margin-bottom: 1em; }
@@ -204,6 +225,34 @@ h1 {
 
 .choropleth {
   text-align: center; }
+
+.choropleth .btn-round {
+  font-size: 4vh;
+  border-radius: 5vh;
+  width: 9vh;
+  height: 9vh;
+  border: 3px solid #837959;
+  color: #837959;
+  background: #F8F7F3;
+  padding: 0; }
+
+.choropleth .btn:hover,
+.choropleth .btn:active,
+.choropleth .btn:focus {
+  outline: none; }
+
+.choropleth i {
+  width: 6vh;
+  height: 6vh; }
+
+.choropleth i::before {
+  line-height: 1.5;
+  font-weight: bold; }
+
+[name="Zoom In"],
+[name="Zoom Out"] {
+  display: block;
+  margin: 0 auto 1rem auto; }
 
 footer {
   background: #837959;
