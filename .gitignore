@@ -3,3 +3,7 @@
 config.codekit
 node_modules
 .DS_Store
+*.pyc
+*.pyo
+*.swp
+db.sqlite3
