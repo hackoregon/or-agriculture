@@ -2,7 +2,7 @@ cropApp
   .controller('acresCtrl', function($scope, $http, $log) {
     $http({
       method: 'GET',
-      url: 'http://api.cropcompass.org/data/oain_harvest_acres?region=Benton',
+      url: 'http://api.cropcompass.org/data/oain_harvest_acres?region=Multnomah',
       headers: {
         'Content-Type': 'text/html; charset=utf-8'
       }
