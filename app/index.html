@@ -18,13 +18,14 @@
     <script type="text/javascript" src='angular/layout/navbar.controller.js'></script>
     <script type="text/javascript" src='angular/layout/modalSelect.controller.js'></script>
     <!-- testing out api request -->
-    <script type="text/javascript" src='angular/templates/testController.js'></script>
+    <script type="text/javascript" src='angular/templates/topFiveAcresController.js'></script>
   </head>
 
   <body>
     <header ui-view="navbar"></header>
     <main>
-      <section ng-controller="testCtrl" ui-view="choropleth"></section>
+      <section ui-view="choropleth"></section>
+      <section ng-controller="acresCtrl" ui-view="topFiveAcres"></section>
       <section ui-view="topFive"></section>
       <section ui-view="totalProd"></section>
     </main>
