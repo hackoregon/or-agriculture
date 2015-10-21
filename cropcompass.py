@@ -1,6 +1,7 @@
 import simplejson as json
 from flask import Flask, url_for, request
 import psycopg2
+import logging
 
 metadata_fields = ('name',
                    'description',
@@ -15,15 +16,18 @@ table_fields = ('commodity','year','region')
 select_table_metadata = 'SELECT {METADATA_FIELDS} FROM metadata'.format(
                                       METADATA_FIELDS=','.join(metadata_fields))
 
-select_data_template = """SELECT d.crop,
+select_data_template = """SELECT d.commodity,
                                  d.year,
-                                 cl.region,
+                                 cl.region as region,
                                  d.{FIELD}
                                  FROM {TABLE_NAME} d
                                  LEFT JOIN region_lookup cl
                                  USING (fips)
                                  {WHERE_CLAUSE}
-                                 {LIMIT_CLAUSE}"""
+                                 ORDER BY (year,region, commodity) DESC
+                                 {LIMIT_CLAUSE}
+                                 {OFFSET_CLAUSE}
+                                 """
 
 class CropFlaskServer(Flask):
     def __init__(self, *args, **kwargs):
@@ -51,11 +55,14 @@ def data_table(table_name):
     check_conn()
     with app.conn.cursor() as cur:
         where_clause, where_args = parse_where()
+        limit, offset = parse_pagination()
         query = select_data_template.format(TABLE_NAME=table_name,
                                             FIELD=table_metadata['field'],
                                             WHERE_CLAUSE=where_clause,
-                                            LIMIT_CLAUSE=' LIMIT 30')
-        cur.execute(query,where_args)
+                                            LIMIT_CLAUSE=' LIMIT %s',
+                                            OFFSET_CLAUSE = ' OFFSET %s ')
+        logging.debug(cur.mogrify(query,where_args + [limit, offset]))
+        cur.execute(query,where_args + [limit, offset])
         table_data = cur.fetchall()
     response = {'error':None,
                 'rows':len(table_data),
@@ -109,6 +116,12 @@ def parse_where():
         return ('WHERE ' + ' AND '.join(where_clause), where_args)
     return ('',[])
 
+def parse_pagination():
+    limit = int(request.args.get('results',50))
+    page = int(request.args.get('page', 1))
+    # Basically keeps the minimum page at 1
+    offset = (max(page, 1) - 1) * limit
+    return limit, offset
 
 def dict_one(keys, values):
     return dict(zip(keys,values))

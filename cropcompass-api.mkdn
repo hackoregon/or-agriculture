@@ -39,8 +39,10 @@ Returns rows of data, optionally filtered by crop, year, or county
 #### Optional Parameters
 
 * year (individual, comma separated list)
-* crop (individual, comma separated list)
+* commodity (individual, comma separated list)
 * region (individual, comma separated list)
+* results (individual) - Specifies number of results to return, default 50
+* page - Specifies starting page, defaults to 1
 
 #### Example
 
