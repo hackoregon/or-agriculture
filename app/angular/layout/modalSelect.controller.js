@@ -31,14 +31,17 @@ cropApp.controller('modalSelectCtrl', function($scope, $uibModal, $log) {
   };
 });
 
-cropApp.controller('modalInstanceCtrl', function($scope, $modalInstance, counties) {
+cropApp.controller('modalInstanceCtrl', function($scope, $modalInstance, counties, $rootScope) {
   $scope.counties = counties;
   $scope.selected = {
     county: $scope.counties[0].name
   };
 
   $scope.ok = function() {
+
     $modalInstance.close($scope.selected.county);
+    $rootScope.$broadcast('selectionChanged', $scope.selected);
+
   };
 
   $scope.cancel = function() {

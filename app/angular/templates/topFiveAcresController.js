@@ -16,4 +16,10 @@ cropApp
     }, function() {
       console.log("I failed");
     });
+
+    $scope.$on('selectionChanged', function(event, selection) {
+        $scope.selection = selection;
+        $log.info("Got selection chanage in Acres Controller:", selection);
+    });
+
 });
