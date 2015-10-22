@@ -29,16 +29,23 @@ cropApp.controller('modalSelectCtrl', function($scope, $uibModal, $log) {
       $log.info('Modal dismissed at: ' + new Date());
     });
   };
+
+  $scope.$on('selectCounty', function() {
+      $scope.open('lg');
+  });
 });
 
-cropApp.controller('modalInstanceCtrl', function($scope, $modalInstance, counties) {
+cropApp.controller('modalInstanceCtrl', function($scope, $modalInstance, counties, $rootScope) {
   $scope.counties = counties;
   $scope.selected = {
     county: $scope.counties[0].name
   };
 
   $scope.ok = function() {
+
     $modalInstance.close($scope.selected.county);
+    $rootScope.$broadcast('selectionChanged', $scope.selected);
+
   };
 
   $scope.cancel = function() {
