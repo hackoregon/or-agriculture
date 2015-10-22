@@ -12,9 +12,10 @@ Returns a list of available data sources, their units, and other assorted metada
    {
       "source_name":"Environmental Working Group Farm Subsidies",
       "name":"Subsidy Dollars",
-      "url":"http://api.cropcompass.org/data/subsidy_dollars",
       "source_link":"http://farm.ewg.org/region.php?fips=41000",
+      "table_view_url":"http://localhost:5000/table/subsidy_dollars",
       "field":"subsidy_dollars",
+      "row_view_url":"http://localhost:5000/data/subsidy_dollars",
       "table_name":"subsidy_dollars",
       "unit":"dollars",
       "description":"Subsidy Dollars received annually by County and Crop"
@@ -22,12 +23,24 @@ Returns a list of available data sources, their units, and other assorted metada
    {
       "source_name":"Environmental Working Group Farm Subsidies",
       "name":"Subsidy Recipients",
-      "url":"http://api.cropcompass.org/data/subsidy_recipients",
       "source_link":"http://farm.ewg.org/region.php?fips=41000",
+      "table_view_url":"http://localhost:5000/table/subsidy_recipients",
       "field":"subsidy_recipients",
+      "row_view_url":"http://localhost:5000/data/subsidy_recipients",
       "table_name":"subsidy_recipients",
       "unit":"recipients",
       "description":"Recipients of subsidies annually by County and Crop"
+   },
+   {
+      "source_name":"National Agriculture Statistics Service Quickstats",
+      "name":"NASS Commodity Inventory - Animals",
+      "source_link":"http://quickstats.nass.usda.gov/",
+      "table_view_url":"http://localhost:5000/table/nass_animals_inventory",
+      "field":"animals",
+      "row_view_url":"http://localhost:5000/data/nass_animals_inventory",
+      "table_name":"nass_animals_inventory",
+      "unit":"animals",
+      "description":"NASS inventory for commodities measured in individual animals"
    }
 ]
 ```
@@ -39,8 +52,10 @@ Returns rows of data, optionally filtered by crop, year, or county
 #### Optional Parameters
 
 * year (individual, comma separated list)
-* crop (individual, comma separated list)
+* commodity (individual, comma separated list)
 * region (individual, comma separated list)
+* results (individual) - Specifies number of results to return, default 50
+* page - Specifies starting page, defaults to 1
 
 #### Example
 
@@ -94,5 +109,67 @@ Returns rows of data, optionally filtered by crop, year, or county
       }
    ],
    "error":null
+}
+```
+
+### GET /table/{TABLE_NAME}
+
+Returns table (dictionary) formatted data, optionally filtered by crop, year, or county
+
+#### Optional Parameters
+
+* year (individual, comma separated list)
+* commodity (individual, comma separated list)
+* region (individual, comma separated list)
+* results (individual) - Specifies number of results to return, default 50
+* page - Specifies starting page, defaults to 1
+
+Note that while this route supports pagination, it may give undesired results
+
+#### Example
+
+**GET /table/subsidy_dollars?results=20&commodity=wheat,corn**
+
+
+```json
+{
+   "Corn":[
+      {
+         "regions":{
+            "Morrow":158346,
+            "Oregon (Statewide)":332351,
+            "Polk":578,
+            "Yamhill":2999,
+            "Malheur":100319
+         },
+         "name":"Subsidy Dollars",
+         "unit":"dollars",
+         "year":2012
+      }
+   ],
+   "Wheat":[
+      {
+         "regions":{
+            "Morrow":2026578,
+            "Multnomah":40479,
+            "Sherman":1652314,
+            "Wallowa":157884,
+            "Malheur":194060,
+            "Union":512560,
+            "Linn":248168,
+            "Wheeler":8625,
+            "Washington":151917,
+            "Yamhill":95663,
+            "Wasco":1103336,
+            "Oregon (Statewide)":14079492,
+            "Marion":182913,
+            "Umatilla":4854045,
+            "Polk":140923
+         },
+         "name":"Subsidy Dollars",
+         "unit":"dollars",
+         "year":2012
+      }
+   ]
 }
 ```
