@@ -152,7 +152,7 @@ def crop_dictionary(row_keys, table_metadata, table_data):
                         else:
                             # If the right side is real, set the left side to it
                             record['regions'][row_dict['region']] = row_dict[field_name]
-                        updated = True
+                    updated = True
                 else:
                     record['regions'][row_dict['region']] = row_dict[field_name]
                     updated = True
