@@ -1,20 +1,36 @@
-<div class="container-fluid">
-  <div class="row">
+<div class="container">
+  <div class="row" id="choropleth-map">
     <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-      <em>List overlay button here</em>
+      <button type="button" name="List Overlay" class="btn btn-round">
+        <i class="fa fa-clone">
+        </i>
+        <span class="sr-only">List Overlay</span>
+      </button>
     </div>
-    <section id="choropleth-map" class="choropleth">
+    <div>
       <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
-        <img src="assets/images/placeholder-map.png" alt="temporary map" height="300" />
-        <p>
-          <em>placeholder map</em>
-        </p>
+        <img src="assets/images/placeholder-map.png" alt="temporary map" height="400" />
       </div>
-    </section>
-    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-      <p>
-        <em>map controls</em>
-      </p>
     </div>
+    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+      <button type="button" name="Zoom In" class="btn btn-round">
+        <i class="fa fa-plus">
+        </i>
+        <span class="sr-only">Zoom In</span>
+      </button>
+      <button type="button" name="Zoom Out" class="btn btn-round">
+        <i class="fa fa-minus">
+        </i>
+        <span class="sr-only">Zoom Out</span>
+      </button>
+    </div>
+  </div>
+  <div class="row" id="choropleth-type-selectors">
+    <button type="button" name="button" class="btn btn-default">Climate Hardiness Zones</button>
+    <button type="button" name="button" class="btn btn-default">Ecoregions</button>
+    <button type="button" name="button" class="btn btn-default">Land Use Classes</button>
+    <button type="button" name="button" class="btn btn-default">Exports Over Time</button>
+    <button type="button" name="button" class="btn btn-default">Simplified Geography</button>
+    <button type="button" name="button" class="btn btn-default">Land Cover</button>
   </div>
 </div>

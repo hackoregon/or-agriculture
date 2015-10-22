@@ -1,0 +1,55 @@
+  /*!
+  * --------------------------------------------------------------------------
+  * Foundation
+  * --------------------------------------------------------------------------
+  */
+
+  //
+  // If you'd like to reset/normalize anything, this is where it should go.
+  //
+
+*::before, *::after, * {
+  //
+  // Apply a more natural box layout model to all elements. This can be
+  // overridden by setting a specific element's `box-sizing:` to `content-box`.
+  //
+  box-sizing: border-box;
+  //
+  // Establish custom easing function.
+  //
+  animation-timing-function: cubic-bezier( .4, 0, .2, 1 );
+  transition-timing-function: cubic-bezier( .4, 0, .2, 1 );
+}
+
+html, body {
+  margin: 0;
+}
+
+html {
+  //
+  // Prevent fonts from automatically zooming in mobile browsers. A value of
+  // `100%` still allows for pinch-zoom input. (`none` disables pinch-zoom.)
+  //
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  //
+  // Basic typography sets the foundation for vertical rhythm and relative size
+  // between elements.
+  //
+  font-size: 16px;
+  line-height: 1.5em;
+  vertical-align: baseline;
+  //
+  // Ligagures and kerning are ALL over the place.
+  //
+  text-rendering: optimizeLegibility;
+  font-variant-ligatures: common-ligatures discretionary-ligatures;
+  font-feature-settings: "kern" 1, "liga" 1, "dlig" 1;
+  font-kerning: normal;
+  //
+  // Chrome and Opera do not support the `auto` value for hyphens:. Chrome does
+  // support `none`, however.
+  // http://caniuse.com/#feat=css-hyphens
+  //
+  hyphens: auto;
+}

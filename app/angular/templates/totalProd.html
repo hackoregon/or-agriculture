@@ -1,1 +1,8 @@
-<h1>Total Production</h1>
+<div class="container">
+  <h1>Total Production</h1>
+  <h2>Current Selection: {{ selection }}</h2>
+  
+  <canvas id="line" class="chart chart-line" chart-data="data" chart-labels="labels" 
+      chart-legend="true" chart-series="series" chart-click="onClick"></canvas> 
+  
+</div>

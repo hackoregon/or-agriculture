@@ -1,37 +1,39 @@
 <!DOCTYPE html>
-<html ng-app="cropApp">
-<head>
-  <title>Hack Oregon | Ag & Tech</title>
-  <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,300,700' rel='stylesheet' type='text/css'>
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
-  <link rel="stylesheet" href="assets/css/main.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<html ng-app="cropApp" lang="en-US">
+  <head>
+    <title>Hack Oregon | Ag &amp; Tech</title>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,300,700' rel='stylesheet' type='text/css'>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/angular.chartjs/latest/angular-chart.css">
 
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-animate.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.14.2/ui-bootstrap-tpls.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-animate.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.14.2/ui-bootstrap-tpls.js"></script>
 
-  <script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js'></script>
-  <script type="text/javascript" src='angular/app.module.js'></script>
-  <script type="text/javascript" src='angular/app.config.js'></script>
-  <script type="text/javascript" src='angular/templates/choropleth.controller.js'></script>
-  <script type="text/javascript" src='angular/layout/navbar.controller.js'></script>
-  <script type="text/javascript" src='angular/layout/modalSelect.controller.js'></script>
-  <!-- testing out api request -->
-  <script type="text/javascript" src='angular/templates/topFiveAcresController.js'></script>
-</head>
+    <script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+    <script src="//cdn.jsdelivr.net/angular.chartjs/latest/angular-chart.min.js"></script>
+    <script type="text/javascript" src='angular/app.module.js'></script>
+    <script type="text/javascript" src='angular/app.config.js'></script>
+    <script type="text/javascript" src='angular/templates/choropleth.controller.js'></script>
+    <script type="text/javascript" src='angular/layout/navbar.controller.js'></script>
+    <script type="text/javascript" src='angular/layout/modalSelect.controller.js'></script>
+    <!-- testing out api request -->
+    <script type="text/javascript" src='angular/templates/topFiveAcresController.js'></script>
+    <script type="text/javascript" src='angular/templates/farmSize.controller.js'></script>
+    <script type="text/javascript" src='angular/templates/totalProd.controller.js'></script>
+  </head>
 
-<body>
-  <div ui-view="navbar"></div>
-
-  <div ng-controller="modalSelectCtrl">
-    <button type="button" class="btn btn-default" ng-click="open('lg')">Select County</button>
-    <div ng-show="selected">Selected region: {{ selected.name }}</div>
-  </div>
-  <div ui-view="choropleth"></div>
-  <div ng-controller="acresCtrl" ui-view="topFiveAcres"></div>
-  <div ui-view="topFive"></div>
-  <div ui-view="totalProd"></div>
-  <div ui-view="footer"></div>
-</body>
+  <body>
+    <header ui-view="navbar"></header>
+    <main>
+      <section ui-view="choropleth" class="choropleth"></section>
+      <section ng-controller="acresCtrl" ui-view="topFiveAcres"></section>
+      <section ng-controller="farmSizeCtrl" ui-view="farmSize"></section>
+      <section ng-controller="totalProdCtrl" ui-view="totalProd"></section>
+    </main>
+    <footer ui-view="footer"></footer>
+  </body>
 </html>
