@@ -22,6 +22,7 @@
     <script type="text/javascript" src='angular/layout/modalSelect.controller.js'></script>
     <!-- testing out api request -->
     <script type="text/javascript" src='angular/templates/topFiveAcresController.js'></script>
+    <script type="text/javascript" src='angular/templates/farmSize.controller.js'></script>
     <script type="text/javascript" src='angular/templates/totalProd.controller.js'></script>
   </head>
 
@@ -30,7 +31,7 @@
     <main>
       <section ui-view="choropleth" class="choropleth"></section>
       <section ng-controller="acresCtrl" ui-view="topFiveAcres"></section>
-      <section ui-view="topFive"></section>
+      <section ng-controller="farmSizeCtrl" ui-view="farmSize"></section>
       <section ng-controller="totalProdCtrl" ui-view="totalProd"></section>
     </main>
     <footer ui-view="footer"></footer>
