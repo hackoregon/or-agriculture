@@ -129,9 +129,12 @@ def make_json_response(data):
     return resp
 
 def crop_dictionary(row_keys, table_metadata, table_data):
+    # Yes, this is not the prettiest code ever..
+    # But at least it only iterates the resultset a single time to produce
+    # the resulting table?
+
     crop_dict = {}
     field_name = table_metadata['field']
-
     for row in table_data:
         row_dict = dict_one(row_keys,row)
         if row_dict['commodity'] not in crop_dict:
@@ -140,12 +143,21 @@ def crop_dictionary(row_keys, table_metadata, table_data):
         for record in crop_dict[row_dict['commodity']]:
             if record['year'] == row_dict['year']:
                 if row_dict['region'] in record['regions']:
-                    record['regions'][row_dict['region']] += row_dict[field_name]
-                    updated = True
+                    # This additional conditional stuff is ugly, but safeguards
+                    # us from a bunch of null data in our datasets.
+                    if row_dict[field_name]:
+                        if record['regions'][row_dict['region']]:
+                            # Checks that both sides are not Falsey
+                            record['regions'][row_dict['region']] += row_dict[field_name]
+                        else:
+                            # If the right side is real, set the left side to it
+                            record['regions'][row_dict['region']] = row_dict[field_name]
+                        updated = True
                 else:
                     record['regions'][row_dict['region']] = row_dict[field_name]
                     updated = True
         if not updated:
+            # Needs a new record added for this year under this commodity
             new_record = {'year': row_dict['year'],
                           'unit': table_metadata['unit'],
                           'name': table_metadata['name'],
