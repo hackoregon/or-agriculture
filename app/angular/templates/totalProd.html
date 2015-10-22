@@ -1,6 +1,10 @@
 <h1>Total Production</h1>
 
+<button type="button" class="btn btn-default" ng-click="selectCounty()">Select County</button>
+
 <h2>Current Selection: {{ selection }}</h2>
 
 <canvas id="line" class="chart chart-line" chart-data="data" chart-labels="labels" 
     chart-legend="true" chart-series="series" chart-click="onClick"></canvas> 
+
+

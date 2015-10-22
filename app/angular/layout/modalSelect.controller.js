@@ -29,6 +29,10 @@ cropApp.controller('modalSelectCtrl', function($scope, $uibModal, $log) {
       $log.info('Modal dismissed at: ' + new Date());
     });
   };
+
+  $scope.$on('selectCounty', function() {
+      $scope.open('lg');
+  });
 });
 
 cropApp.controller('modalInstanceCtrl', function($scope, $modalInstance, counties, $rootScope) {

@@ -1,5 +1,5 @@
 cropApp
-  .controller('totalProdCtrl', function($scope, $http, $log) {
+  .controller('totalProdCtrl', function($scope, $http, $log, $rootScope) {
 
     $scope.fetchData = function(params) {
         $http({
@@ -48,5 +48,9 @@ cropApp
         var params = selection;
         $scope.fetchData(params);
     });
+
+    $scope.selectCounty = function() {
+        $rootScope.$broadcast('selectCounty');
+    };
 
 });
