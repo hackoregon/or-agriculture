@@ -184,7 +184,7 @@ p {
     font-weight: bold; }
 
 h1 {
-  color: red; }
+  color: #589133; }
 
 .navbar-default {
   background-color: #fff;
@@ -337,7 +337,7 @@ footer a:focus {
 
 .bar {
   display: inline-block;
-  background-color: #FFA45E;
+  background-color: #ff913d;
   border-radius: 40px;
   margin-bottom: 25px; }
 

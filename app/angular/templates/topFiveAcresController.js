@@ -1,6 +1,7 @@
 cropApp
   .controller('acresCtrl', function($scope, $http, $log) {
 
+    
     $scope.convert = function(acres) {
       console.log('graph');
       return 100*(acres/$scope.total_acres) + '%'
