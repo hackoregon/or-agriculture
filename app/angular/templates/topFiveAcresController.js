@@ -10,8 +10,7 @@ cropApp
 
     .then(function(response) {
       $scope.harvestedAcres = response;
-      console.log("hello");
-      console.log($scope);
+      console.log('response');
       console.log(response.data.data);
     }, function() {
       console.log("I failed");
