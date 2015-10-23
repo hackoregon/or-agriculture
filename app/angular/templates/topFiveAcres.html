@@ -1,19 +1,17 @@
 <div class="container">
   <h1>Top Commodities by Acre</h1>
-  <h2>Current Selection: {{ selection }}</h2>
 
-  <div class="row">
-    <table class="table table-striped table-bordered">
-      <tr>
-        <th>Region</th>
-        <th>Commodity</th>
-        <th>Acres</th>
-      </tr>
-      <tr ng-repeat="item in harvestedAcres.data.data | orderBy:'-harvested_acres' | limitTo: 5">
-        <td>{{item.region}}</td>
-        <td>{{item.commodity}}</td>
-        <td>{{item.harvested_acres}}</td>
-      </tr>
-    </table>
+  <div class="bar-graph">
+    <div class="row" ng-repeat="item in harvestedAcres.data.data | orderBy:'-harvested_acres' | limitTo: 5">
+      {{item.commodity}}
+      <br />
+      <div class="bar" ng-style='{width:convert(item.harvested_acres)}'>
+        &nbsp;
+      </div>
+      <span class="acres">
+        {{item.harvested_acres}}
+      </span>
+    </div>
   </div>
+  <br />
 </div>
