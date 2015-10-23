@@ -1,6 +1,14 @@
 cropApp
   .controller('acresCtrl', function($scope, $http, $log) {
 
+
+    // .then(function(response) {
+    //   $scope.harvestedAcres = response;
+    //   console.log('response');
+    //   console.log(response.data.data);
+    // }, function() {
+    //   console.log("I failed");
+
     $scope.fetchData = function(params) {
       $http({
         method: 'GET',
