@@ -22,6 +22,9 @@ cropApp.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
         "totalProd": {
           templateUrl: 'angular/templates/totalProd.html'
         },
+        "farmSize": {
+          templateUrl: 'angular/templates/farmSize.html'
+        },
         "footer": {
           templateUrl: 'angular/layout/footer.html'
         }

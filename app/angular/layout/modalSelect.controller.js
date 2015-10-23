@@ -45,6 +45,43 @@ cropApp.controller('modalSelectCtrl', function($scope, $uibModal, $log) {
 //     $modalInstance.close($scope.selected.county);
 //   };
 
+  $scope.open = function(size) {
+    var modalInstance = $uibModal.open({
+      animation: $scope.animationsEnabled,
+      templateUrl: 'angular/layout/modalSelect.html',
+      controller: 'modalInstanceCtrl',
+      size: size,
+      resolve: {
+        counties: function() {
+          return $scope.counties;
+        }
+      }
+    });
+    modalInstance.result.then(function(selectedCounty) {
+      $scope.selected = selectedCounty;
+    }, function() {
+      $log.info('Modal dismissed at: ' + new Date());
+    });
+  };
+
+  $scope.$on('selectCounty', function() {
+      $scope.open('lg');
+  });
+});
+
+cropApp.controller('modalInstanceCtrl', function($scope, $modalInstance, counties, $rootScope) {
+  $scope.counties = counties;
+  $scope.selected = {
+    county: $scope.counties[0].name
+  };
+
+  $scope.ok = function() {
+
+    $modalInstance.close($scope.selected.county);
+    $rootScope.$broadcast('selectionChanged', $scope.selected);
+
+  };
+
 //   $scope.cancel = function() {
 //     $modalInstance.dismiss('cancel');
 //   };

@@ -1,11 +1,16 @@
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container">
-    <div class="navbar-header">
-      <h1><span class="orange">Crop</span> <span class="green">Compass</span></h1>
-    </div>
-    <!-- <div id="navbar" class="nav navbar-nav navbar-right"> -->
-    <!-- <div ng-controller="ModalCtrl"> -->
-      <!-- <script type="text/ng-template" id="navbar.html">
+<div class="container">
+  <h1>
+    <span class="orange">Crop</span> <span class="green">Compass</span>
+  </h1>
+  <div ng-controller="modalSelectCtrl">
+    <button type="button" class="btn btn-link" ng-click="open('lg')"><i class="fa fa-map-marker"></i> Select County</button>
+    <div ng-show="selected">Selected region: {{ selected.name }}</div>
+  </div>
+
+<!-- <nav class="navbar navbar-default navbar-fixed-top">
+    <div id="navbar" class="nav navbar-nav navbar-right">
+    <div ng-controller="ModalCtrl">
+      <script type="text/ng-template" id="navbar.html">
         <div class="modal-header">
           <h3 class="modal-title">Modal Title</h3>
         </div>
@@ -21,10 +26,9 @@
           <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
           <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
         </div>
-      </script> -->
-        <!-- <button type="button" class="btn btn-default" ng-click="open('lg')">Large modal</button> -->
-        <!-- <div ng-show="selected">Selection from a modal: {{ selected }}</div> -->
-    <!-- </div> -->
+      </script>
+        <button type="button" class="btn btn-default" ng-click="open('lg')">Large modal</button>
+        <div ng-show="selected">Selection from a modal: {{ selected }}</div>
     </div>
-  </div>
-</nav>
+</nav> -->
+</div>

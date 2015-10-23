@@ -1,11 +1,11 @@
 cropApp
-  .controller('totalProdCtrl', function($scope, $http, $log) {
+  .controller('farmSizeCtrl', function($scope, $http, $log) {
 
     $scope.fetchData = function(params) {
         $http({
 
           method: 'GET',
-          url: 'http://api.cropcompass.org/data/nass_commodity_area?year=2012&region=' + params.county.name,
+          url: 'http://api.cropcompass.org/data/nass_commodity_farms?year=2012&region=' + params.county.name,
 
         })
         .then(function(response) {
@@ -32,7 +32,7 @@ cropApp
         for (var i=0; i < data.length; i++) {
             labels.push(data[i].commodity);
             series.push(data[i].year);
-            values.push(data[i].acres);
+            values.push(data[i].farms);
         }
 
         $scope.labels = labels.filter( onlyUnique );
@@ -44,7 +44,6 @@ cropApp
 
     $scope.$on('selectionChanged', function(event, selection) {
         $scope.selection = selection;
-        $log.info("Got selection chanage in Total Production Controller:", selection);
         var params = selection;
         $scope.fetchData(params);
     });

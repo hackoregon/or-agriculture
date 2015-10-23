@@ -1,0 +1,23 @@
+body {
+  font-family: 'Roboto Slab', serif;
+  color: #424242;
+  background-color: $brand-tan;
+}
+
+main {
+  border-top: 1px solid $brand-tan--light;
+  border-bottom: 1px solid $brand-tan--dark;
+}
+
+main section {
+  padding: 1rem;
+  border-top: 1px solid $brand-tan--light;
+}
+
+main section:first-of-type {
+  border-top: 0;
+}
+
+main section:nth-of-type(even) {
+  // background: $brand-tan--light;
+}
