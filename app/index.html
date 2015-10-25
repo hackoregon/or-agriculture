@@ -15,13 +15,17 @@
     <script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js'></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
     <script src="//cdn.jsdelivr.net/angular.chartjs/latest/angular-chart.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src='assets/js/d3.js'></script>
     <script type="text/javascript" src='angular/app.module.js'></script>
     <script type="text/javascript" src='angular/app.config.js'></script>
+    <script type="text/javascript" src='angular/components/simpleRadial.js'></script>
+    <script type="text/javascript" src='angular/services/farmDataService.js'></script>
     <script type="text/javascript" src='angular/templates/choropleth.controller.js'></script>
     <script type="text/javascript" src='angular/layout/navbar.controller.js'></script>
     <script type="text/javascript" src='angular/layout/modalSelect.controller.js'></script>
     <!-- testing out api request -->
     <script type="text/javascript" src='angular/templates/topFiveAcresController.js'></script>
+    <script type="text/javascript" src='angular/templates/countyRankings.controller.js'></script>
     <script type="text/javascript" src='angular/templates/farmSize.controller.js'></script>
     <script type="text/javascript" src='angular/templates/totalProd.controller.js'></script>
   </head>
@@ -31,6 +35,7 @@
     <main>
       <section ui-view="choropleth" class="choropleth"></section>
       <section class="acre_div" ng-controller="acresCtrl" ui-view="topFiveAcres"></section>
+      <section ng-controller="countyRankingsCtrl" ui-view="countyRankings"></section>
       <section ng-controller="farmSizeCtrl" ui-view="farmSize"></section>
       <section ng-controller="totalProdCtrl" ui-view="totalProd"></section>
     </main>

@@ -1,0 +1,11 @@
+<div class="rankings container">
+  <h1>County Rankings</h1>
+  <simple-radial ng-repeat="item in rankings"
+      radial-size="180"
+      value="item.rawValue"
+      percent="item.percent"
+      icon=""
+      color="{{item.color}}"
+      title="{{item.category}}">
+  </simple-radial>
+</div>
