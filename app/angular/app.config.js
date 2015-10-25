@@ -28,11 +28,24 @@ cropApp.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
         "countyRankings": {
           templateUrl: 'angular/templates/countyRankings.html'
         },
+         "team": {
+        templateUrl: 'angular/layout/team.html'
+        },
         "footer": {
           templateUrl: 'angular/layout/footer.html'
-        }
+        },
+
+
       }
     });
+  // .state('team', {
+  //   url: "team",
+  //   views: {
+  //     "team": {
+  //       templateUrl: 'angular/layout/team.html'
+  //     }
+  //   }
+  // })
   $urlRouterProvider.otherwise("/");
 
   $httpProvider.defaults.useXDomain = true;
