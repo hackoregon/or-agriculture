@@ -333,6 +333,8 @@ footer a:focus {
     left: 7px; }
 
 .modal-body {
+  max-height: calc(100vh - 210px);
+  overflow-y: auto;
   border: 1px solid #D3D3D3;
   border-radius: 8px;
   margin: 0 30px; }
