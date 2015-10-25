@@ -29,6 +29,12 @@ cropApp.controller('modalSelectCtrl', function($scope, $uibModal, $log, $rootSco
       resolve: {
         counties: function() {
           return (group == 'region' ? $scope.counties : $scope.commodities);
+        },
+        title: function() {
+          return (group == 'region' ? "Pick a Region or County" : "Select a Specific Crop");
+        },
+        header: function() {
+          return (group == 'region' ? "Oregon Counties" : "Oregon Crops");
         }
       }
     });
@@ -56,7 +62,10 @@ cropApp.controller('modalSelectCtrl', function($scope, $uibModal, $log, $rootSco
   });
 });
 
-cropApp.controller('modalInstanceCtrl', function($scope, $modalInstance, counties) {
+cropApp.controller('modalInstanceCtrl', function($scope, $modalInstance, counties, title, header) {
+
+  $scope.title = title;
+  $scope.header = header;
   $scope.dataSet = counties;
   $scope.selected = {
     item: $scope.dataSet[0]

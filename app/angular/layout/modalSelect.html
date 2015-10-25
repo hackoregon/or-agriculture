@@ -1,6 +1,6 @@
 <section class="modal-window">
   <div class="modal-header">
-    <h1 class="modal-title">Pick a region or county</h1>
+    <h1 class="modal-title">{{title}}</h1>
     <div class="search">
       <span class="fa fa-search fa-2x"></span>
       <input ng-model="searchRegion" type="text" name="select" value="" placeholder="Explore Oregon">
@@ -9,7 +9,7 @@
   <div class="container-fluid">
     <div class="modal-body">
       <div class="region-title">
-        <i class="fa fa-map-marker fa-2x fa-rotate-225"></i> Oregon Counties
+        <i class="fa fa-map-marker fa-2x fa-rotate-225"></i> {{ header }}
         <ul>
           <li ng-repeat="item in dataSet | filter:searchRegion">
             <a href="#" ng-click="$event.preventDefault(); select(item)"> {{item.name}}</a>
