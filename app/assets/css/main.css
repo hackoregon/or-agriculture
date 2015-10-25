@@ -186,6 +186,24 @@ p {
 h1 {
   color: #589133; }
 
+.radial {
+  display: inline-block;
+  width: 30%;
+  margin-bottom: 20px; }
+  .radial .radial-title {
+    text-align: center;
+    font-weight: 700;
+    font-size: xx-large;
+    margin-bottom: 15px; }
+  .radial .radial-background {
+    margin-left: auto;
+    margin-right: auto; }
+  .radial svg {
+    display: block;
+    margin: 0 auto; }
+  .radial text {
+    font-family: Arial; }
+
 .navbar-default {
   background-color: #fff;
   border-bottom: 3px solid #AAAAAA;

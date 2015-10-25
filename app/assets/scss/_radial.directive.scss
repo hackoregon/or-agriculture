@@ -1,0 +1,23 @@
+.radial {
+	display: inline-block;
+	width: 30%;
+	margin-bottom: 20px;
+
+	.radial-title {
+		text-align: center;
+		font-weight: 700;
+		font-size: xx-large;
+		margin-bottom: 15px;
+	}
+	.radial-background {
+		margin-left: auto;
+		margin-right: auto;
+	}
+	svg {
+		display: block;
+		margin: 0 auto;
+	}
+	text {
+		font-family: Arial;
+	}
+}

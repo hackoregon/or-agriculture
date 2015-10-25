@@ -25,6 +25,9 @@ cropApp.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
         "farmSize": {
           templateUrl: 'angular/templates/farmSize.html'
         },
+        "countyRankings": {
+          templateUrl: 'angular/templates/countyRankings.html'
+        },
         "footer": {
           templateUrl: 'angular/layout/footer.html'
         }
