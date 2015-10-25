@@ -244,6 +244,13 @@ h1 {
 .choropleth {
   text-align: center; }
 
+.btn-choropleth {
+  border-radius: 5vh;
+  border: 3px solid #837959;
+  color: #837959;
+  background: #F8F7F3;
+  margin-left: 1rem; }
+
 .choropleth .btn-round {
   font-size: 4vh;
   border-radius: 5vh;
