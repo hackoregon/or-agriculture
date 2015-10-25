@@ -8,8 +8,14 @@
       </button>
     </div>
     <div>
-      <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
-        <img ng-src="{{currentMap}}" alt="temporary map" height="400" />
+      <div class="overlay-wrapper col-xs-12 col-sm-8 col-md-8 col-lg-8">
+        <img src="assets/images/maps/oregon_county_outlines-simplified-aligned.svg" alt="temporary map" height="400" />
+        <div class="irrigated-map col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <img ng-show="toggleIrrigated" src="assets/images/maps/irrigatedlandcapability_range-simplified-aligned.svg" alt="temporary map" height="400" />
+        </div>
+        <div class="crops-map col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <img ng-show="toggleCropsGrowing" src="assets/images/maps/all_crops_from_CDL_2012-simplified-aligned.svg" alt="temporary map" height="400" />
+        </div>
       </div>
     </div>
     <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
@@ -26,15 +32,10 @@
     </div>
   </div>
   <div class="row" id="choropleth-type-selectors">
-
-    <button ng-click="selectMap(0)" type="button" name="button" class="btn btn-choropleth">County Lines</button>
-    <button ng-click="selectMap(1)" type="button" name="button" class="btn btn-choropleth">Land Capability</button>
-    <button ng-click="selectMap(2)" type="button" name="button" class="btn btn-choropleth">Where crops are growing</button>
-
+    <button ng-click="toggleIrrigated = !toggleIrrigated" type="button" name="button" class="btn btn-choropleth">Land Capability</button>
+    <button ng-click="toggleCropsGrowing = !toggleCropsGrowing" type="button" name="button" class="btn btn-choropleth">Where crops are growing</button>
   </div>
-
   <div class="row">
-    <p>{{currentMapDescription}}</p> 
+    <p>{{currentMapDescription}}</p>
   </div>
-
 </div>

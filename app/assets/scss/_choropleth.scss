@@ -37,6 +37,16 @@
   margin: 0 auto 1rem auto;
 }
 
+.overlay-wrapper {
+  position: relative;
+  .irrigated-map,.crops-map {
+    top: 0;
+    left: 0;
+    z-index: 10;
+    position: absolute;
+  }
+}
+
 #choropleth-map {
 
 }
