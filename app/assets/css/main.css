@@ -359,6 +359,20 @@ footer a:focus {
   overflow: auto !important;
   height: 600px; }
 
+.acre_div {
+  height: initial; }
+  .acre_div .topCategory {
+    margin-left: 20px; }
+  .acre_div .btn-theme {
+    border-radius: 5vh;
+    border: 3px solid #837959;
+    color: #837959;
+    background: #F8F7F3;
+    margin-left: 1rem; }
+  .acre_div .btn-theme-selected {
+    background: #837959;
+    color: #F8F7F3; }
+
 .bar-graph {
   width: 75%;
   margin-left: auto;
@@ -369,10 +383,8 @@ footer a:focus {
   display: inline-block;
   background-color: #ff913d;
   border-radius: 40px;
-  margin-bottom: 25px; }
-
-.acre_div {
-  height: initial; }
+  margin-bottom: 25px;
+  transition: width 1s; }
 
 .fa-rotate-225 {
   -webkit-transform: rotate(225deg);

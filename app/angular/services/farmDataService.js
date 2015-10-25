@@ -17,13 +17,19 @@ angular.module('cropApp').factory('farmData', function($http, $log) {
 
 	return {
 
-		getAcresHarvested: function(countyName) {
-			var acresUrl = 'http://api.cropcompass.org/data/oain_harvest_acres?region=' + countyName;
+		getAcresHarvested: function(countyName, year) {
+			var y = year || 2012;
+			var acresUrl = 'http://api.cropcompass.org/data/oain_harvest_acres?year=' + y + '&region=' + countyName;
 			return checkCache(acresUrl);
 		},
-
-		getRelativeRankings: function(countyName) {
-			var rankingUrl = 'http://api.cropcompass.org/charts/county_rankings?region='+countyName;
+		getAnimalsPresent: function(countyName, year) {
+			var y = year || 2012;
+			var animalsUrl = 'http://api.cropcompass.org/data/nass_animals_inventory?year=' + y + '&region=' + countyName;
+			return checkCache(animalsUrl);
+		},
+		getRelativeRankings: function(countyName, year) {
+			var y = year || 2012;
+			var rankingUrl = 'http://api.cropcompass.org/charts/county_rankings?year=' + y + '&region='+countyName;
 			return checkCache(rankingUrl);
 		}
 	}
