@@ -1,3 +1,5 @@
+import random
+
 import cropcompass as db
 import pandas
 
@@ -20,6 +22,7 @@ def test():
     ]
     return data 
 
+
 def pandas_test():
     table_name = 'nass_commodity_area'
     
@@ -33,3 +36,27 @@ def pandas_test():
     df = df.where((pandas.notnull(df)), None)
 
     return df.to_dict('records')
+
+
+def county_rankings():
+
+    def random_percent():
+        return float('%.2f' % random.random())
+
+    data = [ 
+        { 'category': 'Variety of Crops',
+          'percent': random_percent() }, 
+        { 'category': 'Percent of Farmable Land',
+          'percent': random_percent() },
+        { 'category': 'Revenue',
+          'rawValue': '$43m',
+          'percent': random_percent() }, 
+        { 'category': 'Rain',
+          'rawValue': '32in',
+          'percent': random_percent() }, 
+        { 'category': 'Growing Degree Days',
+          'rawValue': '1200',
+          'percent': random_percent() }, 
+    ]
+
+    return data
