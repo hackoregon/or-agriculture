@@ -94,10 +94,10 @@ def chart_view(chart_name):
 
 
 
-def fetch_data(table_name, table_metadata):
+def fetch_data(table_name, table_metadata, url_args={}):
     check_conn()
     with app.conn.cursor() as cur:
-        where_clause, where_args = parse_where()
+        where_clause, where_args = parse_where(url_args)
         limit, offset = parse_pagination()
         query = select_data_template.format(TABLE_NAME=table_name,
                                             FIELD=table_metadata['field'],
@@ -187,13 +187,14 @@ def crop_dictionary(row_keys, table_metadata, table_data):
     return crop_dict
 
 
-def parse_where():
+def parse_where(url_args={}):
+    url_args = url_args or request.args or {}
     where_clause = []
     where_args = []
     for field in table_fields:
-        field_param = request.args.get(field)
+        field_param = url_args.get(field)
         if field_param:
-            field_values = field_param.split(',')
+            field_values = str(field_param).split(',')
             where_args.extend(field_values)
             if field in lower_fields:
                 where_clause.append(('lower(' + field + ') in (%s)') %
