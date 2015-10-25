@@ -279,6 +279,14 @@ h1 {
   display: block;
   margin: 0 auto 1rem auto; }
 
+.overlay-wrapper {
+  position: relative; }
+  .overlay-wrapper .irrigated-map, .overlay-wrapper .crops-map {
+    top: 0;
+    left: 0;
+    z-index: 10;
+    position: absolute; }
+
 footer {
   background: #837959;
   color: #E4DFCF;
@@ -370,6 +378,33 @@ footer a:focus {
 
 .acre_div {
   height: initial; }
+
+.map-legend {
+  border-radius: 1vh;
+  border: 3px solid #837959;
+  color: #837959;
+  background: #F8F7F3; }
+  .map-legend ul {
+    text-align: left;
+    padding-left: 10px;
+    list-style-type: none; }
+  .map-legend .legend-box {
+    border: solid 2px #837959;
+    display: inline-block;
+    width: 20px;
+    height: 15px; }
+  .map-legend #irr-2 {
+    background-color: #D6D6FF; }
+  .map-legend #irr-3 {
+    background-color: #A6ABED; }
+  .map-legend #irr-4 {
+    background-color: #7B88DB; }
+  .map-legend #irr-5 {
+    background-color: #556CC9; }
+  .map-legend #irr-6 {
+    background-color: #3357B8; }
+  .map-legend #crop-legend-box {
+    background-color: #000; }
 
 .fa-rotate-225 {
   -webkit-transform: rotate(225deg);
