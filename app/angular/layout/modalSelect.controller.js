@@ -1,17 +1,26 @@
-cropApp.controller('modalSelectCtrl', function($scope, $uibModal, $log) {
+cropApp.controller('modalSelectCtrl', function($scope, $uibModal, $log, $rootScope, farmData) {
 
-  $scope.counties = [
-    {name: 'Baker'}, {name:'Benton'}, {name: 'Clackamas'}, {name: 'Clatsop'}, {name: 'Columbia'}, {name: 'Coos'},
-    {name: 'Crook'}, {name: 'Curry'}, {name: 'Deschutes'}, {name: 'Douglas'}, {name: 'Gilliam'}, {name: 'Grant'},
-    {name: 'Harney'}, {name: 'Hood River'}, {name: 'Jackson'}, {name: 'Jefferson'}, {name: 'Josephine'}, {name: 'Klamath'},
-    {name: 'Lake'}, {name: 'Lane'}, {name: 'Lincoln'}, {name: 'Linn'}, {name: 'Malheur'}, {name: 'Marion'}, {name: 'Morrow'},
-    {name: 'Multnomah'}, {name: 'Polk'}, {name: 'Sherman'}, {name: 'Tillamook'}, {name: 'Umatilla'}, {name: 'Union'},
-    {name: 'Wallowa'}, {name: 'Wasco'}, {name: 'Washington'}, {name: 'Wheeler'}, {name: 'Yamhill'}
-  ];
+  $scope.commodities = [];
+  $scope.counties = [];
+  $scope.selected = {
+    commodity: {},
+    county: {}
+  }
+
+  farmData.getRegions().then(function(result) {
+    $scope.counties = result.data.data;
+  });
+  farmData.getCommodities().then(function(result) {
+    $scope.commodities = result.data.data;
+    if ($scope.commodities.length > 0) {
+      $scope.selected.commodity = $scope.commodities[0];
+    }
+  });
 
   $scope.animationsEnabled = true;
 
-  $scope.open = function(size) {
+  $scope.open = function(size, groupSet) {
+    var group = groupSet || 'region';
     var modalInstance = $uibModal.open({
       animation: $scope.animationsEnabled,
       templateUrl: 'angular/layout/modalSelect.html',
@@ -19,33 +28,47 @@ cropApp.controller('modalSelectCtrl', function($scope, $uibModal, $log) {
       size: size,
       resolve: {
         counties: function() {
-          return $scope.counties;
+          return (group == 'region' ? $scope.counties : $scope.commodities);
         }
       }
     });
-    modalInstance.result.then(function(selectedCounty) {
-      $scope.selected = selectedCounty;
+    modalInstance.result.then(function(selected) {
+      if (groupSet == 'region') {
+        $scope.selected.county = selected.county;
+      } else {
+        $scope.selected.commodity = selected.county;
+      }
+      $rootScope.$broadcast('selectionChanged', $scope.selected);
     }, function() {
       $log.info('Modal dismissed at: ' + new Date());
     });
   };
+
+  $scope.friendlyCounty = function() {
+    if ($scope.selected && !!$scope.selected.county && $scope.selected.county.name) {
+      return $scope.selected.county.name + ' County';
+    }
+    return "Oregon";
+  }
 
   $scope.$on('selectCounty', function() {
       $scope.open('lg');
   });
 });
 
-cropApp.controller('modalInstanceCtrl', function($scope, $modalInstance, counties, $rootScope) {
-  $scope.counties = counties;
+cropApp.controller('modalInstanceCtrl', function($scope, $modalInstance, counties) {
+  $scope.dataSet = counties;
   $scope.selected = {
-    county: $scope.counties[0].name
+    item: $scope.dataSet[0]
   };
 
+  $scope.select = function(item) {
+    $scope.selected.county = item;
+    $scope.ok();
+  }
+
   $scope.ok = function() {
-
-    $modalInstance.close($scope.selected.county);
-    $rootScope.$broadcast('selectionChanged', $scope.selected);
-
+    $modalInstance.close($scope.selected);
   };
 
   $scope.cancel = function() {

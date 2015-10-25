@@ -347,7 +347,8 @@ footer a:focus {
     list-style-type: none;
     padding-top: 10px; }
   .modal-body .region-title {
-    font-size: 30px; }
+    font-size: 30px;
+    margin-left: 20px; }
   .modal-body li {
     font-size: 20px; }
     .modal-body li a {
