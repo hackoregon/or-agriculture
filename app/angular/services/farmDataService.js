@@ -17,6 +17,12 @@ angular.module('cropApp').factory('farmData', function($http, $log) {
 
 	return {
 
+		getRegions: function() {
+			return checkCache('http://api.cropcompass.org/charts/list_of_regions');
+		},
+		getCommodities: function() {
+			return checkCache('http://api.cropcompass.org/charts/list_of_commodities');
+		},
 		getAcresHarvested: function(countyName, year) {
 			var y = year || 2012;
 			var acresUrl = 'http://api.cropcompass.org/data/oain_harvest_acres?year=' + y + '&region=' + countyName;
