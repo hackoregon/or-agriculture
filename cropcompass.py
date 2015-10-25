@@ -2,6 +2,7 @@ import simplejson as json
 from flask import Flask, url_for, request, abort
 import psycopg2
 import logging
+import charts
 
 metadata_fields = ('name',
                    'description',
@@ -37,6 +38,7 @@ class CropFlaskServer(Flask):
     def __init__(self, *args, **kwargs):
         super(CropFlaskServer, self).__init__(*args, **kwargs)
         self.dsn = "dbname=alex user=postgres port=55432 host=10.102.148.190 password=mysecretpassword"
+        #self.dsn = "dbname=alex user=postgres port=55432 host=198.72.81.88 password=mysecretpassword"
         #self.dsn = "dbname=alex user=alex" # Testing DSN only
         self.conn = psycopg2.connect(self.dsn)
 
@@ -73,6 +75,23 @@ def table_view(table_name):
     table_data = fetch_data(table_name, table_metadata)
     response = crop_dictionary(row_keys, table_metadata, table_data)
     return make_json_response(response)
+
+@app.route('/charts/<chart_name>')
+def chart_view(chart_name):
+    if not hasattr(charts, chart_name):
+        abort(404)
+
+    data = getattr(charts, chart_name)()
+
+    if not isinstance(data, list):
+        data = [data]
+
+    response = {'error': None,
+                'rows': len(data),
+                'data': data}
+
+    return make_json_response(response)
+
 
 
 def fetch_data(table_name, table_metadata):
