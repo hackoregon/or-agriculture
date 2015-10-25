@@ -36,7 +36,7 @@
     <main>
       <section ui-view="choropleth" class="choropleth"></section>
       <section class="acre_div" ng-controller="acresCtrl" ui-view="topFiveAcres"></section>
-      <section ng-controller="countyRankingsCtrl" ui-view="countyRankings"></section>
+      <section class="rank_div" ng-controller="countyRankingsCtrl" ui-view="countyRankings"></section>
       <section ng-controller="farmSizeCtrl" ui-view="farmSize"></section>
       <section ng-controller="totalProdCtrl" ui-view="totalProd"></section>
       <section ui-view="team"></section>

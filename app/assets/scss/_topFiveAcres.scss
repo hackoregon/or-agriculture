@@ -1,3 +1,23 @@
+.acre_div {
+
+	height: initial;
+
+	.topCategory {
+		margin-left: 20px;
+	}
+	.btn-theme {
+		border-radius: 5vh;
+		border: 3px solid $brand-tan--dark;
+		color: $brand-tan--dark;
+		background: $brand-tan--light;
+		margin-left: 1rem;
+	}
+	.btn-theme-selected {
+		background: $brand-tan--dark;
+		color: $brand-tan--light;
+	}
+}
+
 .bar-graph {
 	width: 75%;
 	margin-left: auto;
@@ -10,8 +30,6 @@
 	background-color: darken(#FFA45E, 6.5%);
 	border-radius: 40px;
 	margin-bottom: 25px;
-}
 
-.acre_div {
-	height: initial;
+	transition: width 1s;
 }
