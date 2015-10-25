@@ -1,7 +1,13 @@
 .choropleth {
   text-align: center;
 }
-
+.btn-choropleth {
+  border-radius: 5vh;
+  border: 3px solid $brand-tan--dark;
+  color: $brand-tan--dark;
+  background: $brand-tan--light;
+  margin-left: 1rem;
+}
 .choropleth .btn-round {
   font-size: 4vh;
   border-radius: 5vh;

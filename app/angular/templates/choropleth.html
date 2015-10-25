@@ -27,9 +27,14 @@
   </div>
   <div class="row" id="choropleth-type-selectors">
 
-    <button ng-click="selectMap(0)" type="button" name="button" class="btn btn-default">County Lines</button>
-    <button ng-click="selectMap(1)" type="button" name="button" class="btn btn-default">Land Capability</button>
-    <button ng-click="selectMap(2)" type="button" name="button" class="btn btn-default">Where crops are growing</button>
+    <button ng-click="selectMap(0)" type="button" name="button" class="btn btn-choropleth">County Lines</button>
+    <button ng-click="selectMap(1)" type="button" name="button" class="btn btn-choropleth">Land Capability</button>
+    <button ng-click="selectMap(2)" type="button" name="button" class="btn btn-choropleth">Where crops are growing</button>
 
   </div>
+
+  <div class="row">
+    <p>{{currentMapDescription}}</p> 
+  </div>
+
 </div>
