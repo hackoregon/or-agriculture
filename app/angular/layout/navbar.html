@@ -3,8 +3,9 @@
     <span class="orange">Crop</span> <span class="green">Compass</span>
   </h1>
   <div ng-controller="modalSelectCtrl">
-    <button type="button" class="btn btn-link" ng-click="open('lg')"><i class="fa fa-map-marker"></i> Select County</button>
-    <div ng-show="selected">Selected region: {{ selected.name }}</div>
+    <button type="button" class="btn btn-link" ng-click="open('lg', 'crops')">Crop: {{ selected.commodity.name }}</button>
+    <button type="button" class="btn btn-link" ng-click="open('lg', 'region')">
+      <i class="fa fa-map-marker"></i> {{ friendlyCounty() }}</button>
   </div>
 
 <!-- <nav class="navbar navbar-default navbar-fixed-top">

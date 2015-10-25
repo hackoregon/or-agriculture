@@ -1,0 +1,33 @@
+// Irrigated capability legend
+$irr-2: #D6D6FF;
+$irr-3: #A6ABED;
+$irr-4: #7B88DB;
+$irr-5: #556CC9;
+$irr-6: #3357B8;
+
+
+.map-legend {
+  ul {
+    text-align: left;
+    padding-left: 10px;
+    list-style-type: none;
+  }
+  border-radius: 1vh;
+  border: 3px solid $brand-tan--dark;
+  color: $brand-tan--dark;
+  background: $brand-tan--light;
+
+  .legend-box {
+    border: solid 2px #837959;
+    display: inline-block;
+    width:20px;
+    height:15px;
+  }
+  #irr-2 {background-color: #D6D6FF;}
+  #irr-3 {background-color: #A6ABED;}
+  #irr-4 {background-color: #7B88DB;}
+  #irr-5 {background-color: #556CC9;}
+  #irr-6 {background-color: #3357B8;}
+  #crop-legend-box {background-color: #000;}
+
+}
