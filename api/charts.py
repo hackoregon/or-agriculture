@@ -47,6 +47,31 @@ def pandas_test():
     return df.to_dict('records')
 
 
+def list_of_regions():
+    regions = ['Baker', 'Benton', 'Clackamas', 'Clatsop', 'Columbia', 'Coos', 'Crook', 'Curry', 'Deschutes', 'Douglas', 'Gilliam', 'Grant', 'Harney', 'Hood River', 'Jackson', 'Jefferson', 'Josephine', 'Klamath', 'Lake', 'Lane', 'Lincoln', 'Linn', 'Malheur', 'Marion', 'Morrow', 'Multnomah', 'Polk', 'Sherman', 'Tillamook', 'Umatilla', 'Union', 'Wallowa', 'Wasco', 'Washington', 'Wheeler', 'Yamhill'] 
+
+    regions.sort()
+
+    regions_data = [
+            {'name': region} for region in regions]
+
+    return regions_data
+
+
+def list_of_commodities():
+    commodities= ['Wheat', 'Grasses, Grass Seed, and Sod', 'Corn', 'Barley', 'Potatoes', 'Mint', 'Sweet Corn', 'Cut Christmas Trees', 'Beans', 'Peas', 'Oats', 'Onions', 'Sugarbeets', 'Hazelnuts', 'Pears', 'Grapes', 'Cherries', 'Blueberries', 'Blackberries', 'Hops', 'Raspberries', 'Canola', 'Cranberries', 'Apples', 'Strawberries', 'Squash & Pumpkins', 'Broccoli', 'Cauliflower', 'Mustard', ]
+
+    commodities.sort()
+
+    commodities_data = [
+            {'name': c,
+             'NASS_name': c,
+             'OAIN_name': c} for c in commodities]
+
+    return commodities_data
+
+
+
 def county_rankings():
 
     def random_percent():
