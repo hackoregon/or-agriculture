@@ -31,6 +31,9 @@ cropApp.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
          "team": {
         templateUrl: 'angular/layout/team.html'
         },
+         "datasources": {
+        templateUrl: 'angular/layout/datasources.html'
+        },
         "footer": {
           templateUrl: 'angular/layout/footer.html'
         },
