@@ -1,0 +1,9 @@
+.chart-container {
+  text-align: center;
+}
+.chart-container canvas {
+  // TODO: Determine where/how the inline styles are being injected and remove
+  //   them.
+  width: auto !important;
+  height: 60vh !important;
+}
