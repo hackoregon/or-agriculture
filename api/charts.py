@@ -163,28 +163,42 @@ def number_of_farms():
     return json
 
 
-
 def _shannon_entropy(pdist):
     """ Return Shannon Entropy of the probability pdist """
     # TODO add reference about Shannon Entropy
-    return -sum(pdist * pandas.np.log2(pdist))
+    # return -sum(pdist * pandas.np.log2(pdist))
+    return -sum(pdist * pandas.np.log(pdist))
+
+
+def _effective_number_crops(pdist):
+    """ 
+    Returns effective number of crops given proportional distribution pdist.
+    """
+    return pandas.np.power(pandas.np.e, _shannon_entropy(pdist))
 
 
 def crop_diversity():
+    """
+    In progress
+    """
+
     table_name = 'nass_commodity_area'
-    default_year = 2012
-    default_region = 'Yamhill'
     
+    diversity = {}
     df = _get_data(table_name)
 
-    diversity = {}
+    # We don't have access to the original URL query params here,
+    # so we grab the first commodity & region here
+    selected_year = df.year.unique()[0]
+    selected_region = df.region.unique()[0]
 
-    regions = df.region.unique()
-    crops_and_acres = df[['commodity', 'acres']][df.year == default_year][df.region == default_region]
+    # Make sure we filter down to selection
+    df = df[df.year == selected_year]
+    df = df[df.region == selected_region]
+
+    crops_and_acres = df[['commodity', 'acres']]
     croparea = crops_and_acres.groupby('commodity').sum()
 
-    croparea = croparea.where((pandas.notnull(df)), None)
+    effective_crops = _effective_number_crops(croparea.acres / sum(croparea.acres))
 
-    data = croparea.to_dict('records')
-
-    return data
+    return effective_crops.to_dict('records')
