@@ -4,7 +4,7 @@ import cropcompass as db
 from flask import abort
 import pandas
 
-
+DEFAULT_YEAR = 2012
 
 
 def _get_data(table_name, url_args={}, as_dataframe=True):
@@ -17,8 +17,6 @@ def _get_data(table_name, url_args={}, as_dataframe=True):
     if as_dataframe:
         columns, data = row_keys, table_data
 
-        if not len(data):
-            abort(404)
         df = pandas.DataFrame.from_records(data, columns=columns)
 
         # Fill NA values with a regular "None":
@@ -31,7 +29,7 @@ def _get_data(table_name, url_args={}, as_dataframe=True):
         return row_keys, table_data
 
 
-def test():
+def test(url_args, **kwargs):
     data = [
             {'season': 5, 'commodity': 'Wheat'},
             {'season': 8, 'commodity': 'Barley'},
@@ -39,7 +37,7 @@ def test():
     return data 
 
 
-def pandas_test():
+def pandas_test(url_args, **kwargs):
     table_name = 'nass_commodity_area'
     
     df = _get_data(table_name)
@@ -47,10 +45,10 @@ def pandas_test():
     return df.to_dict('records')
 
 
-def list_of_regions():
-    regions = ['Oregon (Statewide)', 'Baker', 'Benton', 'Clackamas', 'Clatsop', 'Columbia', 'Coos', 'Crook', 'Curry', 'Deschutes', 'Douglas', 'Gilliam', 'Grant', 'Harney', 'Hood River', 'Jackson', 'Jefferson', 'Josephine', 'Klamath', 'Lake', 'Lane', 'Lincoln', 'Linn', 'Malheur', 'Marion', 'Morrow', 'Multnomah', 'Polk', 'Sherman', 'Tillamook', 'Umatilla', 'Union', 'Wallowa', 'Wasco', 'Washington', 'Wheeler', 'Yamhill'] 
+def list_of_regions(url_args, **kwargs):
+    regions = ['Baker', 'Benton', 'Clackamas', 'Clatsop', 'Columbia', 'Coos', 'Crook', 'Curry', 'Deschutes', 'Douglas', 'Gilliam', 'Grant', 'Harney', 'Hood River', 'Jackson', 'Jefferson', 'Josephine', 'Klamath', 'Lake', 'Lane', 'Lincoln', 'Linn', 'Malheur', 'Marion', 'Morrow', 'Multnomah', 'Polk', 'Sherman', 'Tillamook', 'Umatilla', 'Union', 'Wallowa', 'Wasco', 'Washington', 'Wheeler', 'Yamhill'] 
 
-    # regions.sort()
+    regions = ['Oregon'] + sorted(regions)
 
     regions_data = [
             {'name': region} for region in regions]
@@ -58,10 +56,10 @@ def list_of_regions():
     return regions_data
 
 
-def list_of_commodities():
+def list_of_commodities(url_args, **kwargs):
     commodities= ['Wheat', 'Grasses, Grass Seed, and Sod', 'Corn', 'Barley', 'Potatoes', 'Mint', 'Sweet Corn', 'Cut Christmas Trees', 'Beans', 'Peas', 'Oats', 'Onions', 'Sugarbeets', 'Hazelnuts', 'Pears', 'Grapes', 'Cherries', 'Blueberries', 'Blackberries', 'Hops', 'Raspberries', 'Canola', 'Cranberries', 'Apples', 'Strawberries', 'Squash & Pumpkins', 'Broccoli', 'Cauliflower', 'Mustard', ]
 
-    commodities.sort()
+    commodities = ['Any'] + sorted(commodities)
 
     commodities_data = [
             {'name': c,
@@ -72,14 +70,14 @@ def list_of_commodities():
 
 
 
-def county_rankings():
+def county_rankings(url_args, **kwargs):
 
     def random_percent():
         return float('%.2f' % random.random())
 
     data = [ 
         { 'category': 'Variety of Crops',
-          'rawValue': crop_diversity()
+          'rawValue': crop_diversity(),
           'percent': random_percent() }, 
         { 'category': 'Percent of Farmable Land',
           'percent': random_percent() },
@@ -97,71 +95,130 @@ def county_rankings():
     return data
     
 
-def number_of_farms():
+def _num_farms_for_commodity(commodity, region):
     """
-    JSON for farm size pie chart. Should look like this:
-    {'total_farms': 300', 'farms_for_commodity': 25}
+    Number of farms for a particular commodity within 
+    a county/region or statewide.
+    """
+    
+    table_name = 'nass_commodity_farms'
+    
+    if region and commodity:
+        df = _get_data(table_name, {
+                'commodity': commodity,
+                'region': region,
+                'year': DEFAULT_YEAR})
 
-    @TODO still in progress
+        total = df.pivot_table(
+                index='region',
+                values='farms',
+                aggfunc=sum)
+
+        if len(total):
+            return total.values[0]
+        else:
+            return 0 
+
+    elif commodity and not region:
+        # Total num farms for commodity for all regions
+        df = _get_data(table_name, {
+                'commodity': commodity,
+                'results': 9999,
+                'year': DEFAULT_YEAR})
+
+        # Exclude any rows with Total in them 
+        df = df[~df.commodity.str.contains('Total')]
+        
+        total = df.pivot_table(
+                index='commodity',
+                values='farms',
+                aggfunc=sum)
+
+        if len(total):
+            return total.values[0]
+        else:
+            return 0 
+
+    else:
+        # Not either was specified
+        return 0
+
+
+def _num_farms_for_region(region):
+    """
+    Total number of farms with any commodity within
+    a county/region or statewide.
     """
 
     table_name = 'nass_commodity_farms'
     
-    #args = {'year': 2007,
-    #        'region': 'Yamhill',}
+    if region:
+        df = _get_data(table_name, {
+                'region': region,
+                'year': DEFAULT_YEAR,
+                'results': 9999})
 
-    df = _get_data(table_name)
+        total = df.pivot_table(
+                index='region',
+                values='farms',
+                aggfunc=sum)
 
-    # /data/nass_commodity_farms?region=Yamhill&limit=5000&commodity=Total Farms&year=2012
-    # /data/nass_commodity_farms?region=Yamhill&limit=5000&commodity=Hazelnuts&year=2012
+        if len(total):
+            return total.values[0]
+        else:
+            return 0 
 
-    # We don't have access to the original URL query params here,
-    # so we grab the first commodity & region here
-    selected_year = df.year.unique()[0]
-    selected_commodity = df.commodity.unique()[0]
-    selected_region = df.region.unique()[0]
+    else:
+        # Total farms for all regions (statewide)
+        df = _get_data(table_name, {
+                'commodity': 'Total farms',
+                'year': DEFAULT_YEAR,
+                'results': 9999})
 
-    # Make sure we filter down to selection
-    df = df[df.year == selected_year]
-    df = df[df.region == selected_region]
-    df = df[df.commodity == selected_commodity]
+        total = df.pivot_table(
+                index='commodity',
+                values='farms',
+                aggfunc=sum)
 
-    farms_per_commodity = df.pivot_table(
-            index='region',
-            values='farms',
-            aggfunc=sum).values[0]
-
-
-    # Do a 2nd query for Total Farms because if they
-    # filtered by a specific commodity it gets excluded
-    selected_commodity = 'Total Farms'
-    args = {'region': selected_region,
-            'commodity': selected_commodity}
-    df = _get_data(table_name, args)
-
-    # Make sure we filter down to selection
-    df = df[df.year == selected_year]
-    df = df[df.region == selected_region]
-    df = df[df.commodity == selected_commodity]
-
-    total_farms = df.pivot_table(
-            index='region',
-            values='farms',
-            aggfunc=sum).values[0]
+        if len(total):
+            return total.values[0]
+        else:
+            return 0 
 
 
-    json = [ {
-        "region": selected_region,
-        "commodity": selected_commodity,
+def number_of_farms(url_args, **kwargs):
+    """
+    JSON for farm size pie chart. Should look like this:
+    {'total_farms': 300', 'farms_for_commodity': 25}
+
+    Sample query URLs:
+    /data/nass_commodity_farms?region=Yamhill&limit=5000&commodity=Total Farms&year=2012
+    /data/nass_commodity_farms?region=Yamhill&limit=5000&commodity=Hazelnuts&year=2012
+
+    """
+
+    selected_year = url_args.get('year', DEFAULT_YEAR)
+    selected_commodity = url_args.get('commodity')
+    selected_region = url_args.get('region')
+
+    if 'oregon' in selected_region.lower():
+        selected_region = None
+
+    if 'any' in selected_commodity.lower():
+        selected_commodity = None
+
+    farms_for_commodity = _num_farms_for_commodity(selected_commodity, selected_region)
+    total_farms = _num_farms_for_region(selected_region)
+
+    data = {
+        "region": selected_region or "Oregon",
+        "commodity": "Farms with %s" % selected_commodity if selected_commodity else None,
         "year": selected_year,
-        "farms_per_commodity": farms_per_commodity,
+        "farms_per_commodity": farms_for_commodity,
         "total_farms": total_farms,
-    }]
+    }
 
-    #import ipdb; ipdb.set_trace()
-    #return df.to_dict('records')
-    #return totals.to_dict('records') 
-    return json
+    return data
 
 
 def _shannon_entropy(pdist):
@@ -178,7 +235,7 @@ def _effective_number_crops(pdist):
     return pandas.np.power(pandas.np.e, _shannon_entropy(pdist))
 
 
-def crop_diversity():
+def crop_diversity(url_args, **kwargs):
     """
     In progress
     """

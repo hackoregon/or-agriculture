@@ -2,11 +2,14 @@ cropApp
   .controller('farmSizeCtrl', function($scope, $http, $log) {
 
     $scope.fetchData = function(params) {
+        var params = params || {county: {}, commodity: {}};
+        var region  = params.county.name || '';
+        var commodity = params.commodity.NASS_name || '';
+
         $http({
-
           method: 'GET',
-          url: 'http://api.cropcompass.org/data/nass_commodity_farms?year=2012&region=' + params.county.name,
-
+          url: 'http://api.cropcompass.org/charts/number_of_farms?region=' 
+            + region + '&commodity=' + commodity,
         })
         .then(function(response) {
 
@@ -21,25 +24,13 @@ cropApp
     };
 
     $scope.updateChart = function(data) {
-        var labels = [],
-            series = [],
-            values = [];
 
-        function onlyUnique(value, index, self) {
-            return self.indexOf(value) === index;
-        }
+        data = data[0];
 
-        for (var i=0; i < data.length; i++) {
-            labels.push(data[i].commodity);
-            series.push(data[i].year);
-            values.push(data[i].farms);
-        }
+        $scope.labels = ['Total farms in ' + data.region, data.commodity]
+        $scope.data = [data.total_farms, data.farms_per_commodity];
 
-        $scope.labels = labels.filter( onlyUnique );
-        $scope.series = series.filter ( onlyUnique );
-        $scope.data = [values.filter( onlyUnique )];
-
-        $log.debug( $scope.labels, $scope.series, $scope.data );
+        $log.debug( "Num farms", $scope.labels, $scope.data );
     };
 
     $scope.$on('selectionChanged', function(event, selection) {
@@ -47,5 +38,7 @@ cropApp
         var params = selection;
         $scope.fetchData(params);
     });
+
+    $scope.fetchData();
 
 });

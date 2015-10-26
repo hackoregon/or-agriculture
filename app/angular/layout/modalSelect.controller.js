@@ -44,7 +44,10 @@ cropApp.controller('modalSelectCtrl', function($scope, $uibModal, $log, $rootSco
       } else {
         $scope.selected.commodity = selected.county;
       }
+
       $rootScope.$broadcast('selectionChanged', $scope.selected);
+      $log.debug($scope.selected);
+      
     }, function() {
       $log.info('Modal dismissed at: ' + new Date());
     });
