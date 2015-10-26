@@ -1,6 +1,6 @@
 body {
   font-family: 'Roboto Slab', serif;
-  color: #424242;
+  color: $font-color--dark;
   background-color: $brand-tan;
 }
 
@@ -10,14 +10,21 @@ main {
 }
 
 main section {
+  border-top: 1px solid lighten($brand-tan, 5%);
+}
+
+main section .container {
   padding: 1rem;
-  border-top: 1px solid $brand-tan--light;
+  height: inherit;
 }
 
 main section:first-of-type {
   border-top: 0;
 }
 
-main section:nth-of-type(even) {
-  // background: $brand-tan--light;
+table {
+  width: 100%;
+}
+td {
+  padding: .5rem 0;
 }

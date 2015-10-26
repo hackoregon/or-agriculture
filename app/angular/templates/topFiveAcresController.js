@@ -5,12 +5,14 @@ angular.module('cropApp')
     $scope.selected = '';
     $scope.category = 'acres';
     $scope.max_value = 1;
-    
+
     $scope.convert = function(acres) {
       // multiply by 100 to create a percentage
       // but scale it back to allow for the number following the bar
       // (we don't want it to wrap to the next row)
-      return 85*(acres/$scope.max_value) + '%'
+
+      // Round that number to have it display more cleanly
+      return Math.round(85*(acres/$scope.max_value)) + '%'
     }
 
     $scope.updateData = function(countyName, category) {

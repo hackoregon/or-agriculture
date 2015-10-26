@@ -26,10 +26,8 @@
 }
 
 .bar {
+	background-color: darken($brand-orange, 6.5%);
+	border-radius: $font-size--xs;
 	display: inline-block;
-	background-color: darken(#FFA45E, 6.5%);
-	border-radius: 40px;
-	margin-bottom: 25px;
-
 	transition: width 1s;
 }

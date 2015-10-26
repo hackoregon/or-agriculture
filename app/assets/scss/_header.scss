@@ -19,7 +19,7 @@ header h1::before {
 }
 header h1 {
   align-self: flex-start;
-  margin: 0 auto 0 0;
+  margin: 0;
   font-size: 5vh;
   line-height: 1.825;
   text-align: left;
@@ -32,6 +32,9 @@ header h1 {
   }
 header div {
   margin: 0 0 0 auto;
+}
+header div div {
+  display: inline-block;
 }
 header .btn {
   font-size: 4vh;

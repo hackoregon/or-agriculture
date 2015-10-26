@@ -1,6 +1,7 @@
-.choropleth {
+#choropleth {
   text-align: center;
 }
+
 .btn-choropleth {
   border-radius: 5vh;
   border: 3px solid $brand-tan--dark;
@@ -8,7 +9,7 @@
   background: $brand-tan--light;
   margin-left: 1rem;
 }
-.choropleth .btn-round {
+#choropleth .btn-round {
   font-size: 4vh;
   border-radius: 5vh;
   width: 9vh;
@@ -18,16 +19,16 @@
   background: $brand-tan--light;
   padding: 0;
 }
-.choropleth .btn:hover,
-.choropleth .btn:active,
-.choropleth .btn:focus {
+#choropleth .btn:hover,
+#choropleth .btn:active,
+#choropleth .btn:focus {
   outline: none;
 }
-.choropleth i {
+#choropleth i {
   width: 6vh;
   height: 6vh;
 }
-.choropleth i::before {
+#choropleth i::before {
   line-height: 1.5;
   font-weight: bold;
 }
@@ -52,5 +53,9 @@
 }
 
 #choropleth-type-selectors {
+
+}
+
+#choropleth-map-description {
 
 }
