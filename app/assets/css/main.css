@@ -93,8 +93,12 @@ main section .container {
 main section:first-of-type {
   border-top: 0; }
 
+main section h1 {
+  margin-top: 0; }
+
 table {
-  width: 100%; }
+  width: 100%;
+  margin-top: 1rem; }
 
 td {
   padding: .5rem 0; }
@@ -404,18 +408,28 @@ footer img {
   height: 600px; }
 
 .acre_div .topCategory {
-  margin-left: 20px; }
+  font-size: 4vh;
+  margin: .75em auto; }
 
 .acre_div .btn-theme {
-  border-radius: 5vh;
+  font-size: 4vh;
+  font-weight: bold;
+  border-radius: .5em;
   border: 3px solid #837959;
+  margin-right: 1rem;
   color: #837959;
-  background: #F8F7F3;
-  margin-left: 1rem; }
+  background: #F8F7F3; }
+  .acre_div .btn-theme:last-of-type {
+    margin-right: 0; }
+  .acre_div .btn-theme:hover,
+  .acre_div .btn-theme:active,
+  .acre_div .btn-themefocus {
+    outline: 0; }
 
 .acre_div .btn-theme-selected {
   background: #837959;
-  color: #F8F7F3; }
+  color: #F8F7F3;
+  outline: 0; }
 
 .bar-graph {
   width: 75%;
