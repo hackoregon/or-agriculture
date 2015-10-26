@@ -81,7 +81,7 @@ def chart_view(chart_name):
     if not hasattr(charts, chart_name):
         abort(404)
 
-    data = getattr(charts, chart_name)()
+    data = getattr(charts, chart_name)(url_args=request.args)
 
     if not isinstance(data, list):
         data = [data]
@@ -98,7 +98,7 @@ def fetch_data(table_name, table_metadata, url_args={}):
     check_conn()
     with app.conn.cursor() as cur:
         where_clause, where_args = parse_where(url_args)
-        limit, offset = parse_pagination()
+        limit, offset = parse_pagination(url_args)
         query = select_data_template.format(TABLE_NAME=table_name,
                                             FIELD=table_metadata['field'],
                                             WHERE_CLAUSE=where_clause,
@@ -206,9 +206,10 @@ def parse_where(url_args={}):
         return ('WHERE ' + ' AND '.join(where_clause), where_args)
     return ('',[])
 
-def parse_pagination():
-    limit = int(request.args.get('results',50))
-    page = int(request.args.get('page', 1))
+def parse_pagination(url_args={}):
+    url_args = url_args or request.args
+    limit = int(url_args.get('results',100))
+    page = int(url_args.get('page', 1))
     # Basically keeps the minimum page at 1
     offset = (max(page, 1) - 1) * limit
     return limit, offset
