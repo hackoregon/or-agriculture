@@ -79,6 +79,7 @@ def county_rankings():
 
     data = [ 
         { 'category': 'Variety of Crops',
+          'rawValue': crop_diversity()
           'percent': random_percent() }, 
         { 'category': 'Percent of Farmable Land',
           'percent': random_percent() },
