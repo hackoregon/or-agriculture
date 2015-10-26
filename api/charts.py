@@ -291,38 +291,6 @@ def _get_crop_diversity(region):
         return effective_crops
 
 
-def _get_production_over_time(region, commodity):
-    data = {'commodity': commodity,
-            'region': region,
-            'years': []}
-
-    if region:
-        # All commodities for one region
-
-        if commodity:
-            # filter to one commodity
-            values = [] 
-
-        else:
-            # sum all commodities for region
-            values = []
-
-    elif commodity:
-
-        if region:
-            values = []
-        else:
-            values = []
-
-    else:
-        # All commodities for all regions (statewide)
-        # exclude totals?
-        values = []
-
-    data['years'] = values
-    return data
-
-
 def _get_growing_degree_days(region):
     table_name = 'ocs_climate_growing_degree_days'
     
@@ -339,12 +307,73 @@ def _get_precipitation(region):
     return float(df.inches.values[0])
 
 
-def production_over_time(url_args, **kwargs):
+def _get_acres_over_time(region, commodity):
+    table_name = 'oain_harvest_acres'
+    
+    df = _get_data(table_name, {
+        'commodity': commodity,
+        'region': region,
+        'results': 99999})
+
+    data = {'commodity': commodity,
+            'region': region,
+            'years': [],}
+
+    if region:
+        # All commodities for one region
+
+        if commodity:
+            # filter to one commodity
+            df = df.pivot_table(index='year', aggfunc=sum)
+            df.index.name = None
+            df['year'] = df.index
+            values = df.to_dict('records')
+
+        else:
+            # sum all commodities for region
+            df = df.pivot_table(index='year', aggfunc=sum)
+            df.index.name = None
+            df['year'] = df.index
+            values = df.to_dict('records')
+
+    elif commodity:
+
+        if region:
+            df = df.pivot_table(index='year', aggfunc=sum)
+            df.index.name = None
+            df['year'] = df.index
+            values = df.to_dict('records')
+        else:
+            df = df.pivot_table(index='year', aggfunc=sum)
+            df.index.name = None
+            df['year'] = df.index
+            values = df.to_dict('records')
+
+    else:
+        # All acres of all commodities for all regions (statewide)
+        # per year
+        df = df.pivot_table(index='year', aggfunc=sum)
+        df.index.name = None
+        df['year'] = df.index
+        values = df.to_dict('records')
+
+    data['years'] = values
+    data['commodity'] = data['commodity'] or "All Crops"
+    data['region'] = data['region'] or "Oregon" 
+    data['label'] = "Acres of %s in %s County" % (data['commodity'], data['region'])
+
+    if not data['region']:
+        data['label'] = data['label'].rstrip("County")
+
+    return data
+
+
+def acres_over_time(url_args, **kwargs):
 
     selected_year = None 
     selected_commodity = url_args.get('commodity')
     selected_region = url_args.get('region')
 
-    data = _get_production_over_time(selected_region, selected_commodity)
+    data = _get_acres_over_time(selected_region, selected_commodity)
 
     return data
