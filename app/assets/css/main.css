@@ -308,6 +308,12 @@ table {
     z-index: 10;
     position: absolute; }
 
+#choropleth-type-selectors {
+  text-align: left; }
+  #choropleth-type-selectors button {
+    margin-bottom: 1rem;
+    border-radius: 1vh; }
+
 footer {
   background: #837959;
   color: #E4DFCF;
