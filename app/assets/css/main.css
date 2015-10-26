@@ -308,6 +308,12 @@ table {
     z-index: 10;
     position: absolute; }
 
+#choropleth-type-selectors {
+  text-align: left; }
+  #choropleth-type-selectors button {
+    margin-bottom: 1rem;
+    border-radius: 1vh; }
+
 footer {
   background: #837959;
   color: #E4DFCF;
@@ -438,6 +444,8 @@ footer a:focus {
     background-color: #3357B8; }
   .map-legend #crop-legend-box {
     background-color: #000; }
+  .map-legend #selected-crop-legend-box {
+    background-color: #FF0000; }
 
 .fa-rotate-225 {
   -webkit-transform: rotate(225deg);
