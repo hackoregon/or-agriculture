@@ -76,16 +76,13 @@ def county_rankings(url_args, **kwargs):
         return float('%.2f' % random.random())
 
     data = [ 
-        { 'category': 'Variety of Crops',
+        { 'category': 'Effective # of Crops',
           'rawValue': crop_diversity(),
           'percent': random_percent() }, 
-        { 'category': 'Percent of Farmable Land',
-          'percent': random_percent() },
-        { 'category': 'Revenue',
-          'rawValue': '$43m',
-          'percent': random_percent() }, 
-        { 'category': 'Rain',
-          'rawValue': '32in',
+        #{ 'category': '% of Land in Farms',
+        #  'percent': random_percent() },
+        { 'category': 'Percipitation',
+          'rawValue': '32 in',
           'percent': random_percent() }, 
         { 'category': 'Growing Degree Days',
           'rawValue': '1200',
