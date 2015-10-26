@@ -40,7 +40,7 @@
 
 .overlay-wrapper {
   position: relative;
-  .irrigated-map,.crops-map {
+  .irrigated-map,.crops-map,.selected-crop-map {
     top: 0;
     left: 0;
     z-index: 10;
