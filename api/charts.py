@@ -265,3 +265,45 @@ def crop_diversity(url_args, **kwargs):
     effective_crops = _effective_number_crops(croparea.acres / sum(croparea.acres))
 
     return effective_crops.to_dict('records')
+
+def _get_production_over_time(region, commodity):
+    data = {'commodity': commodity,
+            'region': region,
+            'years': []}
+
+    if region:
+        # All commodities for one region
+
+        if commodity:
+            # filter to one commodity
+            values = [] 
+
+        else:
+            # sum all commodities for region
+            values = []
+
+    elif commodity:
+
+        if region:
+            values = []
+        else:
+            values = []
+
+    else:
+        # All commodities for all regions (statewide)
+        # exclude totals?
+        values = []
+
+    data['years'] = values
+    return data
+
+
+def production_over_time(url_args, **kwargs):
+
+    selected_year = None 
+    selected_commodity = url_args.get('commodity')
+    selected_region = url_args.get('region')
+
+    data = _get_production_over_time(selected_region, selected_commodity)
+
+    return data
