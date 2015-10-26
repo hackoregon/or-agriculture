@@ -1,17 +1,30 @@
 .acre_div {
 	.topCategory {
-		margin-left: 20px;
+		font-size: $font-size--lg;
+		margin: .75em auto;
 	}
 	.btn-theme {
-		border-radius: 5vh;
+		font-size: $font-size--lg;
+		font-weight: bold;
+		border-radius: .5em;
 		border: 3px solid $brand-tan--dark;
+		margin-right: 1rem;
 		color: $brand-tan--dark;
 		background: $brand-tan--light;
-		margin-left: 1rem;
+		&:last-of-type {
+			margin-right: 0;
+		}
+		&:hover,
+		&:active,
+		&focus {
+			outline: 0;
+		}
 	}
+
 	.btn-theme-selected {
 		background: $brand-tan--dark;
 		color: $brand-tan--light;
+		outline: 0;
 	}
 }
 
