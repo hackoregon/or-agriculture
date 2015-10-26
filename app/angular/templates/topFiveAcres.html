@@ -1,23 +1,36 @@
 <div class="container">
   <h1>Top Commodities</h1>
-
   <div class="topCategory">
     <button ng-click="viewByAcres()" class="btn btn-theme" ng-class="{ 'btn-theme-selected': category=='acres' }"># Acres</button>
     <button ng-click="viewByAnimals()" class="btn btn-theme" ng-class="{ 'btn-theme-selected': category=='animals' }"># Animals</button>
   </div>
-
-  <div class="bar-graph">
-
-    <div class="row" ng-repeat="item in dataSet track by $index">
-      {{item.commodity}}
-      <br />
-      <div class="bar" ng-style='{width:convert(item.value)}'>
-        &nbsp;
-      </div>
-      <span class="acres">
-        {{item.value}}
-      </span>
-    </div>
-  </div>
-  <br />
+  <table>
+    <thead>
+      <th>
+        Commodity
+      </th>
+      <th>
+        Total Number
+      </th>
+      <th>
+        Total Percentage
+      </th>
+    </thead>
+    <tbody>
+      <tr ng-repeat="item in dataSet track by $index">
+        <td>
+          {{item.commodity}}
+        </td>
+        <td>
+          {{item.value}}
+        </td>
+        <td>
+          <div class="bar" ng-style='{width:convert(item.value)}'>
+            &nbsp;
+          </div>
+          {{convert(item.value)}}
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>

@@ -30,8 +30,14 @@ p {
 }
 
 h1 {
-  @extend .heading.-large;
-  color: darken(#67A93C, 6.5%);
+  font-size: $font-size--xl;
+  font-weight: bold;
+  line-height: 1.5;
+  color: $brand-green;
+}
+
+table {
+  font-size: $font-size--lg;
 }
 
 h2 {
