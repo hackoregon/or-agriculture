@@ -312,7 +312,7 @@ table {
 
 .overlay-wrapper {
   position: relative; }
-  .overlay-wrapper .irrigated-map, .overlay-wrapper .crops-map {
+  .overlay-wrapper .irrigated-map, .overlay-wrapper .crops-map, .overlay-wrapper .selected-crop-map {
     top: 0;
     left: 0;
     z-index: 10;
