@@ -77,7 +77,8 @@ def county_rankings(url_args, **kwargs):
 
     data = [ 
         { 'category': 'Effective # of Crops',
-          'rawValue': crop_diversity(),
+           #'rawValue': crop_diversity(url_args),
+          'rawValue': 1.25,
           'percent': random_percent() }, 
         #{ 'category': '% of Land in Farms',
         #  'percent': random_percent() },
