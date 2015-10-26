@@ -8,8 +8,8 @@ footer ul {
   align-items: center;
   height: inherit;
 }
-footer ul li {
-  width: 5rem;
+footer ul li:first-child {
+  margin-right: 1rem;
 }
 footer ul li:last-child {
   flex-grow: 2;
