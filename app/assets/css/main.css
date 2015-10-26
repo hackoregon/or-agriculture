@@ -438,6 +438,8 @@ footer a:focus {
     background-color: #3357B8; }
   .map-legend #crop-legend-box {
     background-color: #000; }
+  .map-legend #selected-crop-legend-box {
+    background-color: #FF0000; }
 
 .fa-rotate-225 {
   -webkit-transform: rotate(225deg);

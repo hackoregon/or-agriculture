@@ -1,4 +1,8 @@
 cropApp.controller('choroplethCtrl', function($scope) {
+
+  $scope.$on('selectionChanged', function(event, selection) {
+    $scope.selection = selection;
+  });
   // $scope.currentMap = 'assets/images/maps/oregon_county_outlines-simplified-aligned.svg';
   // $scope.currentMapDescription = '';
   //
