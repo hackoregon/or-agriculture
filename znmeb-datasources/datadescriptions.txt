@@ -1,0 +1,72 @@
+Crop Compass Data Explanations
+
+Map:
+
+    Land Capability
+        Land Capability Classification is a measure of the suitablity of soils for field crops. The classification system was developed by the US Department of Agriculture to inform farm planning and soil manament. Soil is divided into eight capability classes, ranging from Class 1 (soils have slight limitations that restrict agricultural use) to Class 8 (soils or area are unsuitable for agriculture). With proper management, soils in classes 1-4 can be utilized to grow crops with long-term productivity, while soils in classes 4-8 are not suitable for commercial crop production and are best used for pasture, forestland, or non-agricultural uses.  Soils are classified for both irrigated and non-irrigated agriculture; the "Land Capability" map on crop compass shows the soil classification for Oregon land suitable for growing commercial crops with irrigation. See [UDEL] for more information about each class.
+    Data source: [LCC]
+
+    Where crops are growing
+        The USDA uses satellite imagery to create a map of where certain crops are growing and provides this information through the "Cropland Data Layer" (CDL) program. According to the USDA (http://www.nass.usda.gov/research/Cropland/sarsfaqs2.html), "The CDL is a raster, geo-referenced satellite imagery and extensive agricultural ground truth." In practice, the land is divided into pixels with 30-meter sides, and each pixel is determined to be growing a specific crop, or not, based on analysis of satellite imagery and verified by collecting on-the-ground data. 
+   The map on Crop Compass visualzes where a chosen crop is grown in Oregon according to the CDL with colored pixels. 
+    Data source: [CropScape], year 2012
+
+Top Commodities:
+    Choose "# Acres" or "# Animals" to view the top crops by area of land harvested or top livestock raised by number of animals, for the state (default) or selected county.
+    Data source: [NASS], AgCensus, year 2012
+
+
+County Rankings:
+    Effective number of crops
+        A measure of crop diversity in a county that takes into account not just the number of crops grown, but also the proportion of land for each crop. If most of the farmland is a monoculture, than the effective number of crops will be one. Higher numbers indicate more diversity of crops planted on the farmed land in the selected region.
+        Data source: [NASS], AgCensus, year 2012
+        Reference: Aguilar
+
+
+    Farmed Land
+        Proportion of regional land under agricultural use.
+        Data source: [NASS], AgCensus, year 2012
+    
+
+    Revenue
+        Data source: [OAIN], year 2012
+
+
+    Average Annual Precipitation
+        Average annual precipitation for the selected region over the years 1981-2010. 
+        Data source: [Climate]
+
+
+    Growing Degree Days
+        Growing degree days are a measure of agricultural output based primarily on the mean daily temperature. Over the year, for each day the mean temperature is over 50 degrees Fahrenheit, growing degree days accumulate. For example, if the mean temperature on a day is 53 degrees Fahrenheit, that day contributes 53 - 50 = 3 growing degree days to the annual total. Crop Compass shows the average annual growing degrees days for the selected regions over the years 1981-2010.
+        Data source: [Climate]
+        Reference: [NOAA]
+
+
+    Subsidies
+       Dollar amount of subsidies recieved by farmers in the selected region for the selected crop. 
+        Data source: [Subsidies], year 2012
+
+
+    
+Number of Farms:
+
+Production over Time:
+
+
+Data Sources:
+
+    Climate: http://www.ocs.oregonstate.edu/county_climate/county_climate.html (downloaded October 21, 2015)
+    CropScape: http://nassgeodata.gmu.edu/CropScape/ (downloaded September 23).
+    LCC: http://spatialdata.oregonexplorer.info/geoportal/catalog/search/resource/details.page?uuid=%7b6DCF40D8-6B89-4D69-BDD1-EDEC941C4D72%7d (downloaded September 23)
+    NASS: National Agriculture Statistics Service Quickstats, http://quickstats.nass.usda.gov/ (downloaded September 3, 2015)
+    OAIN: http://oain.oregonstate.edu/ (downloaded August 23, 2015)
+    Subsidies: http://farm.ewg.org/region.php?fips=41000" (downloaded August 27, 2015)
+
+
+
+References:
+    Aguilar: Aguilar J, Gramig GG, Hendrickson JR, Archer DW, Forcella F, Liebig MA (2015) Crop Species Diversity Changes in the United States: 1978–2012. PLoS ONE 10(8): e0136580. doi:10.1371/journal.pone.0136580
+    UDEL: http://www.udel.edu/FREC/spatlab/oldpix/nrcssoilde/Descriptions/landcap.htm
+    NOAA: http://www1.ncdc.noaa.gov/pub/data/normals/1981-2010/documentation/temperature-methodology.pdf 
+
