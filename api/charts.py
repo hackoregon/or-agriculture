@@ -83,15 +83,17 @@ def county_rankings(url_args, **kwargs):
     selected_commodity = url_args.get('commodity')
     selected_region = url_args.get('region')
 
-    def random_percent():
-        return float('%.2f' % random.random())
-
     data = []
+
+    if not selected_region:
+        # This one requires a region
+        # until we make a statewide version
+        return data
 
     val = _get_crop_diversity(selected_region)
     min_ = 0
     max_ = 12
-    ranking = val / (max_ - min_)
+    ranking = float(val) / (max_ - min_) if val else 0
     
     data.append({'category': 'Effective # of Crops',
                  'rawValue': float('%.3f' % val),
@@ -101,17 +103,17 @@ def county_rankings(url_args, **kwargs):
     val = _get_precipitation(selected_region)
     min_ = 0
     max_ = 90 
-    ranking = val / (max_ - min_)
+    ranking = float(val) / (max_ - min_) if val else 0
     
     data.append({'category': 'Annual Precipitation',
-                 'rawValue': val,
+                 'rawValue': '%s in' % val,
                  'min': min_, 'max': max_,
                  'percent': ranking})
 
     val = _get_growing_degree_days(selected_region)
     min_ = 0
     max_ = 3000
-    ranking = val / (max_ - min_)
+    ranking = float(val) / (max_ - min_) if val else 0
     
     data.append({'category': 'Growing Degree Days',
                  'rawValue': val,
@@ -284,10 +286,9 @@ def _get_crop_diversity(region):
         return 0
 
     if pandas.np.isnan(effective_crops):
-        import ipdb; ipdb.set_trace()
         return None
     else:
-        return effective_crops#.to_dict('records')
+        return effective_crops
 
 
 def _get_production_over_time(region, commodity):
@@ -323,11 +324,19 @@ def _get_production_over_time(region, commodity):
 
 
 def _get_growing_degree_days(region):
-    return 0
+    table_name = 'ocs_climate_growing_degree_days'
+    
+    df = _get_data(table_name, {'region': region})
+
+    return df.degree_days.values[0]
 
 
 def _get_precipitation(region):
-    return 0
+    table_name = 'ocs_climate_precipitation_avg'
+    
+    df = _get_data(table_name, {'region': region})
+
+    return float(df.inches.values[0])
 
 
 def production_over_time(url_args, **kwargs):
