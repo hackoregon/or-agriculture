@@ -362,7 +362,8 @@ def _get_acres_over_time(region, commodity):
     data['region'] = data['region'] or "Oregon" 
     data['label'] = "Acres of %s in %s County" % (data['commodity'], data['region'])
 
-    if not data['region']:
+    # @TODO gah!
+    if "Oregon" in data['region']:
         data['label'] = data['label'].rstrip("County")
 
     return data
