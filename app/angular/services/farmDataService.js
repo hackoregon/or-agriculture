@@ -1,6 +1,8 @@
 angular.module('cropApp').factory('farmData', function($http, $log) {
 
 	var resultCache = {};
+        var host = 'http://api.cropcompass.org';
+        // var host = 'http://localhost:5000';
 
 	function checkCache(url) {
 		if (resultCache[url] != null) {
@@ -18,24 +20,24 @@ angular.module('cropApp').factory('farmData', function($http, $log) {
 	return {
 
 		getRegions: function() {
-			return checkCache('http://api.cropcompass.org/charts/list_of_regions');
+			return checkCache(host + '/charts/list_of_regions');
 		},
 		getCommodities: function() {
-			return checkCache('http://api.cropcompass.org/charts/list_of_commodities');
+			return checkCache(host + '/charts/list_of_commodities');
 		},
 		getAcresHarvested: function(countyName, year) {
 			var y = year || 2012;
-			var acresUrl = 'http://api.cropcompass.org/data/oain_harvest_acres?year=' + y + '&region=' + countyName;
+			var acresUrl = host + '/data/oain_harvest_acres?year=' + y + '&region=' + countyName;
 			return checkCache(acresUrl);
 		},
 		getAnimalsPresent: function(countyName, year) {
 			var y = year || 2012;
-			var animalsUrl = 'http://api.cropcompass.org/data/nass_animals_inventory?year=' + y + '&region=' + countyName;
+			var animalsUrl = host + '/data/nass_animals_inventory?year=' + y + '&region=' + countyName;
 			return checkCache(animalsUrl);
 		},
 		getRelativeRankings: function(countyName, year) {
 			var y = year || 2012;
-			var rankingUrl = 'http://api.cropcompass.org/charts/county_rankings?year=' + y + '&region='+countyName;
+			var rankingUrl = host + '/charts/county_rankings?year=' + y + '&region='+countyName;
 			return checkCache(rankingUrl);
 		}
 	}
