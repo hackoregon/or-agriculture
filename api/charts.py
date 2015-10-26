@@ -79,23 +79,44 @@ def list_of_commodities(url_args, **kwargs):
 
 def county_rankings(url_args, **kwargs):
 
+    selected_year = url_args.get('year', DEFAULT_YEAR)
+    selected_commodity = url_args.get('commodity')
+    selected_region = url_args.get('region')
+
     def random_percent():
         return float('%.2f' % random.random())
 
-    data = [ 
-        { 'category': 'Effective # of Crops',
-           #'rawValue': crop_diversity(url_args),
-          'rawValue': 1.25,
-          'percent': random_percent() }, 
-        #{ 'category': '% of Land in Farms',
-        #  'percent': random_percent() },
-        { 'category': 'Percipitation',
-          'rawValue': '32 in',
-          'percent': random_percent() }, 
-        { 'category': 'Growing Degree Days',
-          'rawValue': '1200',
-          'percent': random_percent() }, 
-    ]
+    data = []
+
+    val = _get_crop_diversity(selected_region)
+    min_ = 0
+    max_ = 12
+    ranking = val / (max_ - min_)
+    
+    data.append({'category': 'Effective # of Crops',
+                 'rawValue': float('%.3f' % val),
+                 'min': min_, 'max': max_,
+                 'percent': ranking})
+
+    val = _get_precipitation(selected_region)
+    min_ = 0
+    max_ = 90 
+    ranking = val / (max_ - min_)
+    
+    data.append({'category': 'Annual Precipitation',
+                 'rawValue': val,
+                 'min': min_, 'max': max_,
+                 'percent': ranking})
+
+    val = _get_growing_degree_days(selected_region)
+    min_ = 0
+    max_ = 3000
+    ranking = val / (max_ - min_)
+    
+    data.append({'category': 'Growing Degree Days',
+                 'rawValue': val,
+                 'min': min_, 'max': max_,
+                 'percent': ranking})
 
     return data
     
@@ -240,7 +261,7 @@ def _effective_number_crops(pdist):
     return pandas.np.power(pandas.np.e, _shannon_entropy(pdist))
 
 
-def crop_diversity(url_args, **kwargs):
+def _get_crop_diversity(region):
     """
     In progress
     """
@@ -248,20 +269,73 @@ def crop_diversity(url_args, **kwargs):
     table_name = 'nass_commodity_area'
     
     diversity = {}
-    df = _get_data(table_name)
+    df = _get_data(table_name, {
+            'region': region,
+            'year': DEFAULT_YEAR,
+            'results': 9999})
 
-    # We don't have access to the original URL query params here,
-    # so we grab the first commodity & region here
-    selected_year = df.year.unique()[0]
-    selected_region = df.region.unique()[0]
+    if len(df):
+        number_of_crops = df.commodity.nunique()
+        crops_and_acres = df[['commodity', 'acres']].dropna()
+        croparea = crops_and_acres.groupby('commodity').sum()
+        pdist = croparea.acres.astype(float) / sum(croparea.acres.astype(float))
+        effective_crops = _effective_number_crops(pdist)
+    else:
+        return 0
 
-    # Make sure we filter down to selection
-    df = df[df.year == selected_year]
-    df = df[df.region == selected_region]
+    if pandas.np.isnan(effective_crops):
+        import ipdb; ipdb.set_trace()
+        return None
+    else:
+        return effective_crops#.to_dict('records')
 
-    crops_and_acres = df[['commodity', 'acres']]
-    croparea = crops_and_acres.groupby('commodity').sum()
 
-    effective_crops = _effective_number_crops(croparea.acres / sum(croparea.acres))
+def _get_production_over_time(region, commodity):
+    data = {'commodity': commodity,
+            'region': region,
+            'years': []}
 
-    return effective_crops.to_dict('records')
+    if region:
+        # All commodities for one region
+
+        if commodity:
+            # filter to one commodity
+            values = [] 
+
+        else:
+            # sum all commodities for region
+            values = []
+
+    elif commodity:
+
+        if region:
+            values = []
+        else:
+            values = []
+
+    else:
+        # All commodities for all regions (statewide)
+        # exclude totals?
+        values = []
+
+    data['years'] = values
+    return data
+
+
+def _get_growing_degree_days(region):
+    return 0
+
+
+def _get_precipitation(region):
+    return 0
+
+
+def production_over_time(url_args, **kwargs):
+
+    selected_year = None 
+    selected_commodity = url_args.get('commodity')
+    selected_region = url_args.get('region')
+
+    data = _get_production_over_time(selected_region, selected_commodity)
+
+    return data
