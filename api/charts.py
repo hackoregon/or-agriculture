@@ -59,12 +59,19 @@ def list_of_regions(url_args, **kwargs):
 def list_of_commodities(url_args, **kwargs):
     commodities= ['Wheat', 'Grasses, Grass Seed, and Sod', 'Corn', 'Barley', 'Potatoes', 'Mint', 'Sweet Corn', 'Cut Christmas Trees', 'Beans', 'Peas', 'Oats', 'Onions', 'Sugarbeets', 'Hazelnuts', 'Pears', 'Grapes', 'Cherries', 'Blueberries', 'Blackberries', 'Hops', 'Raspberries', 'Canola', 'Cranberries', 'Apples', 'Strawberries', 'Squash & Pumpkins', 'Broccoli', 'Cauliflower', 'Mustard', ]
 
-    commodities = ['Any'] + sorted(commodities)
+    commodities.sort()
 
     commodities_data = [
             {'name': c,
              'NASS_name': c,
-             'OAIN_name': c} for c in commodities]
+             'OAIN_name': c,
+             'CDL_name': c} for c in commodities]
+
+    commodities_data = [
+            {'name': 'Any',
+             'NASS_name': None,
+             'OAIN_name': None,
+             'CDL_name': None}] + commodities_data
 
     return commodities_data
 
