@@ -150,7 +150,7 @@ header div div {
   display: inline-block; }
 
 header .btn {
-  font-size: 4vh; }
+  font-size: 3vh; }
 
 header .btn:hover,
 header .btn:active,
@@ -160,7 +160,8 @@ header .btn:focus {
 header .btn-link {
   color: #837959;
   font-weight: bold;
-  border: 3px solid transparent; }
+  border: 3px solid #E4DFCF;
+  border-radius: .5em; }
 
 header .btn-link:hover,
 header .btn-link:active,
@@ -168,19 +169,18 @@ header .btn-link:focus {
   text-decoration: none;
   color: #837959;
   background: #fff;
-  border-radius: 1rem;
   border-color: #837959;
   outline: none; }
 
 header i {
-  display: inline-block;
   width: 6vh;
   height: 6vh;
   border: 3px solid #837959;
-  border-radius: 60px; }
+  border-radius: 60px;
+  line-height: 1.75 !important;
+  margin-right: .75rem; }
 
 header i::before {
-  line-height: 1.25;
   color: #837959; }
 
 p {
@@ -189,7 +189,7 @@ p {
 .heading {
   margin-bottom: 0.618em; }
   .heading.-large {
-    font-size: 2rem;
+    font-size: 4vh;
     font-weight: bold;
     line-height: 30px; }
   .heading.-medium, h2 {
@@ -205,13 +205,13 @@ p {
     font-weight: bold; }
 
 h1 {
-  font-size: 2.5rem;
+  font-size: 5vh;
   font-weight: bold;
   line-height: 1.5;
   color: #67A93C; }
 
 table {
-  font-size: 2rem; }
+  font-size: 4vh; }
 
 .radial {
   display: inline-block;
@@ -353,6 +353,11 @@ footer a:focus {
   border-bottom: 1px solid #F8F7F3;
   color: #F8F7F3; }
 
+footer img {
+  width: auto;
+  height: 8vh;
+  max-height: 45px; }
+
 .modal-header {
   margin: 0 30px;
   border: none; }
@@ -452,6 +457,13 @@ footer a:focus {
     background-color: #000; }
   .map-legend #selected-crop-legend-box {
     background-color: #FF0000; }
+
+.chart-container {
+  text-align: center; }
+
+.chart-container canvas {
+  width: auto !important;
+  height: 60vh !important; }
 
 .fa-rotate-225 {
   -webkit-transform: rotate(225deg);

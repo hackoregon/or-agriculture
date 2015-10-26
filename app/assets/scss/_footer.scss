@@ -25,3 +25,8 @@ footer a:focus {
   border-bottom: 1px solid $brand-tan--light;
   color: $brand-tan--light;
 }
+footer img {
+  width: auto;
+  height: 8vh;
+  max-height: 45px;
+}

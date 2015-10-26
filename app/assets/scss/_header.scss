@@ -43,7 +43,7 @@ header div div {
   display: inline-block;
 }
 header .btn {
-  font-size: 4vh;
+  font-size: 3vh;
 }
 header .btn:hover,
 header .btn:active,
@@ -53,7 +53,8 @@ header .btn:focus {
 header .btn-link {
   color: $brand-tan--dark;
   font-weight: bold;
-  border: 3px solid transparent;
+  border: 3px solid $brand-tan;
+  border-radius: .5em;
 }
 header .btn-link:hover,
 header .btn-link:active,
@@ -61,18 +62,18 @@ header .btn-link:focus {
   text-decoration: none;
   color: $brand-tan--dark;
   background: #fff;
-  border-radius: 1rem;
   border-color: $brand-tan--dark;
   outline: none;
 }
 header i {
-  display: inline-block;
   width: 6vh;
   height: 6vh;
   border: 3px solid $brand-tan--dark;
   border-radius: 60px;
+  line-height: 1.75 !important;
+  margin-right: .75rem;
+
 }
 header i::before {
-  line-height: 1.25;
   color: $brand-tan--dark;
 }
