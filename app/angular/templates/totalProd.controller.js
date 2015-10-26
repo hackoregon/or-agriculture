@@ -9,7 +9,7 @@ cropApp
         $http({
 
           method: 'GET',
-          url: 'http://api.cropcompass.org/data/nass_commodity_area?region=',
+          url: 'http://api.cropcompass.org/charts/acres_over_time?region='
             + region + '&commodity=' + commodity,
 
         })
