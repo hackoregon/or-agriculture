@@ -1,8 +1,8 @@
 angular.module('cropApp').factory('farmData', function($http, $log) {
 
 	var resultCache = {};
-        // var host = 'http://api.cropcompass.org';
-        var host = 'http://localhost:5000';
+        var host = 'http://api.cropcompass.org';
+        //var host = 'http://localhost:5000';
 
 	function checkCache(url) {
 		if (resultCache[url] != null) {
