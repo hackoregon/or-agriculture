@@ -96,7 +96,7 @@ def county_rankings(url_args, **kwargs):
     ranking = float(val) / (max_ - min_) if val else 0
     
     data.append({'category': 'Effective # of Crops',
-                 'rawValue': float('%.3f' % val),
+                 'rawValue': float('%.1f' % val),
                  'min': min_, 'max': max_,
                  'percent': ranking})
 
@@ -106,7 +106,7 @@ def county_rankings(url_args, **kwargs):
     ranking = float(val) / (max_ - min_) if val else 0
     
     data.append({'category': 'Annual Precipitation',
-                 'rawValue': '%s in' % val,
+                 'rawValue': '%.0f in' % val,
                  'min': min_, 'max': max_,
                  'percent': ranking})
 
