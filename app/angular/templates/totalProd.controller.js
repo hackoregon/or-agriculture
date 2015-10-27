@@ -31,7 +31,7 @@ cropApp
 
         $scope.labels = [];
         $scope.data = [[]];
-        $scope.series = [data.label];
+        $scope.series = [[data.label]];
 
         
         for (var i=0; i < data.years.length; i++) {

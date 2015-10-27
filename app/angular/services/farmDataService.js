@@ -1,8 +1,8 @@
 angular.module('cropApp').factory('farmData', function($http, $log) {
 
 	var resultCache = {};
-        var host = 'http://api.cropcompass.org';
-        // var host = 'http://localhost:5000';
+        // var host = 'http://api.cropcompass.org';
+        var host = 'http://localhost:5000';
 
 	function checkCache(url) {
 		if (resultCache[url] != null) {
@@ -27,12 +27,14 @@ angular.module('cropApp').factory('farmData', function($http, $log) {
 		},
 		getAcresHarvested: function(countyName, year) {
 			var y = year || 2012;
-			var acresUrl = host + '/data/oain_harvest_acres?year=' + y + '&region=' + countyName;
+                        var c = countyName || 'Oregon (Statewide)';
+			var acresUrl = host + '/data/oain_harvest_acres?year=' + y + '&region=' + c;
 			return checkCache(acresUrl);
 		},
 		getAnimalsPresent: function(countyName, year) {
 			var y = year || 2012;
-			var animalsUrl = host + '/data/nass_animals_inventory?year=' + y + '&region=' + countyName;
+                        var c = countyName || 'Oregon (Statewide)';
+			var animalsUrl = host + '/data/nass_animals_inventory?year=' + y + '&region=' + c;
 			return checkCache(animalsUrl);
 		},
 		getRelativeRankings: function(countyName, year) {

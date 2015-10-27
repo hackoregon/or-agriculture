@@ -17,8 +17,8 @@ angular.module('cropApp')
 
     $scope.updateData = function(countyName, category) {
 
-      var getData = (category == 'acres' ? farmData.getAcresHarvested(countyName)
-                                         : farmData.getAnimalsPresent(countyName));
+      var getData = (category == 'acres' ? farmData.getAcresHarvested(countyName, '2012')
+                                         : farmData.getAnimalsPresent(countyName, '2012'));
 
       getData.then(function(response) {
         $scope.dataSet = [];
