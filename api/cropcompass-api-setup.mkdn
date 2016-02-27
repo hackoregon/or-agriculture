@@ -1,0 +1,45 @@
+# Cropcompass API Developer Setup (MacOS)
+
+### Clone the HackOregon Agriculture git repo
+> git clone https://github.com/hackoregon/or-agriculture.git
+
+### Go to http://brew.sh/ and install homebrew on your mac
+> /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+### Install Postgres using brew:
+> brew install postgresql
+
+## Start Postgres
+> postgres -D /usr/local/var/postgres &
+
+### Create a logical database for your data to go in
+> createdb agtech
+
+### Load in the database backup
+> psql -d agtech -f /path/to/backup-or-agriculture-oct-22-2015.sql
+
+### Install PIP to manage python packages
+> sudo easy_install pip
+
+### Install virtualenv so that you can sandbox your Python modules
+> sudo pip install virtualenv
+
+### Create a virtualenv somewhere convenient
+> virtualenv ~/virtualenv
+
+### Activate your virtualenv
+> source ~/virtualenv/bin/activate
+
+### Install the python requirements
+> pip install -r /path/to/my/git/directory/or-agriculture/api/pip-reqs.txt
+
+### Update the DSN to point to your local postgres instance in cropcompass.py
+> Comment out production self.dsn
+> Add new uncommented line like this:
+>         self.dsn = "dbname=agtech user=alex" # Testing DSN only
+
+
+### Run the Flask app locally
+> /path/to/my/git/directory/or-agriculture/api/cropcompass.py
+
+### Navigate to http://127.0.0.1:5000/list on your browser!
