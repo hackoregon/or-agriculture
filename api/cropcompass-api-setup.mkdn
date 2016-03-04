@@ -35,25 +35,18 @@ config.vm.network "forwarded_port", guest: 5000, host: 5000
 Then restart the vagrant box:
 
 > vagrant reload
-
 > vagrant ssh
 
 
 ### Prepare the postgres server
 > sudo su postgres 
-
 > psql
-
 > CREATE USER vagrant with CREATEUSER;
-
 > CREATE database vagrant; 
-
 > CREATE USER alex with CREATEUSER;
-
+> ALTER USER alex PASSWORD mysecretpassword;
 > CREATE database alex; 
-
 > \q
-
 > exit
 
 ### Create a logical database for your data to go in
@@ -76,10 +69,8 @@ Then restart the vagrant box:
 
 ### Update the DSN to point to your local postgres instance in or-agriculture/api/cropcompass.py
 > Comment out production self.dsn
-
 > Add new uncommented line like this:
-
->         self.dsn = "dbname=agtech user=alex" # Testing DSN only
+>         self.dsn = "dbname=agtech user=alex host=localhost password=mysecretpassword" # Testing DSN only
 
 ### Run the Flask app locally
 > or-agriculture/api/cropcompass.py
