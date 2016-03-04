@@ -8,19 +8,23 @@
 ### Connect to virtual machine
 
 > vagrant ssh 
-(On Windows machine, see Step 4 in the [Data science toolbox instructions](http://datasciencetoolbox.org/)
+
+(On Windows machine, see Step 4 in the [Data science toolbox instructions](http://datasciencetoolbox.org/) )
 
 ### Clone the HackOregon Agriculture git repo
 > git clone https://github.com/hackoregon/or-agriculture.git
 
 ### Unpack the database backup
 > cd or-agriculture/api
+
 > gunzip backup-or-agriculture-oct-22-2015.sql.gz
+
 > cd -
 
 ### Install postgresql-server
 
 > sudo apt-get update
+
 > sudo apt-get install postgresql-server-dev-all
 
 ### Set up port forwarding
@@ -31,17 +35,25 @@ config.vm.network "forwarded_port", guest: 5000, host: 5000
 Then restart the vagrant box:
 
 > vagrant reload
+
 > vagrant ssh
 
 
 ### Prepare the postgres server
 > sudo su postgres 
+
 > psql
+
 > CREATE USER vagrant with CREATEUSER;
+
 > CREATE database vagrant; 
+
 > CREATE USER alex with CREATEUSER;
+
 > CREATE database alex; 
+
 > \q
+
 > exit
 
 ### Create a logical database for your data to go in
@@ -64,7 +76,9 @@ Then restart the vagrant box:
 
 ### Update the DSN to point to your local postgres instance in or-agriculture/api/cropcompass.py
 > Comment out production self.dsn
+
 > Add new uncommented line like this:
+
 >         self.dsn = "dbname=agtech user=alex" # Testing DSN only
 
 ### Run the Flask app locally
