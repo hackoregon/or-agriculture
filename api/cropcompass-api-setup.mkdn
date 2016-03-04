@@ -83,7 +83,7 @@ Then restart the vagrant box:
 >         self.dsn = "dbname=agtech user=alex host=localhost password=mysecretpassword" # Testing DSN only
 
 ### Run the Flask app locally
-> or-agriculture/api/cropcompass.py
+> python or-agriculture/api/cropcompass.py
 
 ### Navigate to http://127.0.0.1:5000/list on your browser!
 
