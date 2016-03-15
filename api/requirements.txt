@@ -1,5 +1,5 @@
 flask
 psycopg2
-pandas
+pandas==0.17.1
 simplejson
 gunicorn
