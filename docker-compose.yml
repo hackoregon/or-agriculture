@@ -14,8 +14,7 @@ api:
     - "8000:8000"
   links:
     - postgres
-  #command: bash -c "cd /usr/src/app && /usr/local/bin/gunicorn cropcompass -w 2 -b :8000 --reload"
-  command:  pip install -r requirements.txt
+  command: bash -c "cd /usr/src/app && /usr/local/bin/gunicorn cropcompass -w 2 -b :8000 --reload"
 
 data:
   restart: always
