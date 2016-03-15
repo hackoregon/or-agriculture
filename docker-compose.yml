@@ -1,0 +1,38 @@
+app:
+  restart: always
+  build: ./app
+  ports:
+    - "80:80"
+  links:
+    - postgres
+  command: /usr/sbin/apache2ctl -D FOREGROUND
+
+api:
+  restart: always
+  build: ./api
+  ports:
+    - "8000:8000"
+  links:
+    - postgres
+  #command: bash -c "cd /usr/src/app && /usr/local/bin/gunicorn cropcompass -w 2 -b :8000 --reload"
+  command:  pip install -r requirements.txt
+
+data:
+  restart: always
+  image: postgres:latest
+  volumes:
+    - /var/lib/postgresql
+    #- ./pg_data:/var/lib/postgresql
+    #- ./pg_data/data:/var/lib/postgresql/data
+  command: "true"
+
+postgres:
+  restart: always
+  image: postgres:latest
+  #volumes:
+  #  - ./sql:/sql
+  volumes_from:
+    - data
+  ports:
+    - "5432:5432"
+  #command: bash -c "cd /sql && /sql/populatedb.sh"

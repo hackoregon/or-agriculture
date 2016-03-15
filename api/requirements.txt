@@ -1,0 +1,5 @@
+flask
+psycopg2
+pandas
+simplejson
+gunicorn

@@ -38,7 +38,8 @@ class CropFlaskServer(Flask):
     def __init__(self, *args, **kwargs):
         super(CropFlaskServer, self).__init__(*args, **kwargs)
         #self.dsn = "dbname=alex user=postgres port=55432 host=10.102.148.190 password=mysecretpassword"
-        self.dsn = "dbname=alex user=postgres port=55432 host=198.72.81.88 password=mysecretpassword"
+        #self.dsn = "dbname=agtech user=alex port=55432 host=postgres"
+        self.dsn = "dbname=agtech user=alex port=55432 host=postgres password=mysecretpassword"
         #self.dsn = "dbname=alex user=alex" # Testing DSN only
         self.conn = psycopg2.connect(self.dsn)
 
